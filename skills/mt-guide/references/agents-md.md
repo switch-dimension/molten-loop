@@ -20,7 +20,7 @@ The section **mt-guide** adds to a project's `AGENTS.md` so every agent session 
 This project uses the Molten Loop agent skills (`mt-*`). Their output lives in `molten-docs/`.
 
 - **Not sure what's next?** Run **mt-guide**. It reads `molten-docs/` and recommends the next skill.
-- **Building a feature:** follow the Agent Development Loop: `/mt-discovery` → `/mt-spec` → `/mt-plan` → `/mt-build` → **mt-verify** → **mt-review** → `/mt-ship`. **mt-prototype** is an optional step before the spec. For anything bigger than a tiny fix, don't skip the spec or plan without asking.
+- **Building a feature:** follow the Agent Development Loop: **mt-discovery** → **mt-spec** → **mt-plan** → **mt-build** → **mt-verify** → **mt-review** → **mt-ship**. **mt-prototype** is an optional step before the spec. For anything bigger than a tiny fix, don't skip the spec or plan without asking.
 - **The spec is the contract.** Before working on a feature, read its docs in `molten-docs/` (spec, plan). If scope changes, update the spec first.
-- **Some skills only start when the user types them** (shown with `/` above, plus `/mt-validate`, `/mt-brand`, `/mt-design`, `/mt-landing` and `/mt-skill-manage`). When one fits, suggest the command; don't do that skill's work without it.
+- **Use the skill, not a freehand version of it.** When a task matches an `mt-*` skill (validating an idea, branding, design, a landing page, a spec, a review, shipping), load that skill and follow it.
 ```

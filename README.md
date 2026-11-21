@@ -30,11 +30,6 @@ Every skill writes its output as Markdown under `molten-docs/`, so each step bui
 | **Utility skills** | mt-guide, mt-search, mt-skill-manage | Routing, research and skill management. Start with **mt-guide** if you're unsure which skill to use |
 
 You don't need both. Testing an idea? Use Product Engineering on its own. Working in an existing codebase? Run Software Engineering once per feature.
-
-### Who starts each skill
-
-Skills that run a long interview or change things (write code, create issues, open PRs, install skills) only start when you type them, for example `/mt-spec`, so your agent never kicks one off unasked. The helpers (**mt-guide**, **mt-search**, **mt-prototype**, **mt-verify** and **mt-review**) can also be picked up by your agent on its own when the task fits. This uses the `disable-model-invocation` front matter field, which Claude Code and Cursor support; other agents ignore it.
-
 ## Product Engineering
 
 Most AI-built products fail by building the wrong thing. These skills turn a raw idea into a validated landing page you can test with real people — score, brand, design system and page — in an afternoon, not a quarter. Run them in order.

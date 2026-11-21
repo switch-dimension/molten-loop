@@ -25,8 +25,6 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 - Ask at most three questions, as plain numbered text in chat; for finite choices, list lettered options under the question (1a, 1b, 1c). Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Recommend one next skill. Mention an optional step only when it clearly earns its cost.
 - Do not recap whole documents. Point to the file paths.
-- **Know who can start each skill.** Skills with `disable-model-invocation: true` in their front matter are user-invoked: you cannot run them, so give the user the command to type (e.g. `/mt-spec`). The rest (mt-prototype, mt-verify, mt-review, mt-search) you may start yourself once the user agrees.
-
 ## Workflow
 
 1. **Read the project state.** Scan `molten-docs/` (see State map). For each feature slug, find the furthest step that exists and read its front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`). Read task status from the task source (see `mt-plan/references/trackers.md` → Task source). With `tracker_sync: true` in `molten-docs/config.md`, that is the tracker, read using the operations listed there; the plan then only links to issues. Otherwise it is the plan's checkboxes. Mention which tasks are in progress, done, and ready in the current wave.
@@ -44,7 +42,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
    2. Is there an existing codebase?
    3. How big is it? (a. tiny, under an hour · b. a feature · c. a whole product)
 4. **Route** using the Skill map and Shortcuts.
-5. **Hand off.** Use the Recommendation format. Offer to start a model-invoked skill; for a user-invoked one, give the command to type.
+5. **Hand off.** Use the Recommendation format, then offer to start the recommended skill.
 6. **Check AGENTS.md.** If `AGENTS.md` at the repository root has no `## Molten Loop skills` heading, add one line after the recommendation: "Want me to add a short Molten Loop section to `AGENTS.md` so every agent session knows these skills are here?" Ask once per session, and not if the user declined before.
 
 ## AGENTS.md setup
@@ -140,13 +138,11 @@ Not every job needs the whole loop. Use these when they fit:
 **Optional:** <one detour worth considering, or omit this line>
 ```
 
-Then, for a model-invoked skill, ask: "Want me to start **<skill>** now?" For a user-invoked skill, end with: "Type `/<skill>` to start it."
+Then ask: "Want me to start **<skill>** now?"
 
 ## Checklist
 
 - [ ] Read `molten-docs/` before asking anything
 - [ ] Read the recommended skill's `SKILL.md` before describing it or suggesting a step be skipped
 - [ ] Checked the recommended skill is installed (or gave the install command)
-- [ ] One clear next skill, in the recommendation format
-- [ ] User-invoked skills handed off as a command to type, not started
-- [ ] No files written, except the `AGENTS.md` section after the user agreed
+- [ ] One clear next skill, in the recommendation format- [ ] No files written, except the `AGENTS.md` section after the user agreed

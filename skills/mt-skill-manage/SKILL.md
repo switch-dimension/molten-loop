@@ -1,7 +1,6 @@
 ---
 name: mt-skill-manage
 description: Molten Loop — manage agent skills with the skills.sh CLI (`npx skills`). Use to install, add, update, upgrade, remove, list, or find skills, restore from a lockfile, or scaffold a new skill. Trigger when the user mentions skills.sh, the skills CLI, `npx skills`, or asks to add/install/update/remove/list skills.
-disable-model-invocation: true
 metadata:
   author: switch-dimension
   version: "1.4.0"
