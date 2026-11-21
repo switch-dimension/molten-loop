@@ -1,6 +1,7 @@
 ---
 name: mt-landing
 description: Molten Loop — create or audit high-converting landing pages (build → index.html + styles.css, or 22-point audit). Use for landing page, waitlist, sales page, or conversion review. Reads `molten-docs/brand/brand.md` and `molten-docs/design/design.md` when present. Routes to build or audit workflow by intent.
+disable-model-invocation: true
 metadata:
   author: switch-dimension
   version: "1.2.0"

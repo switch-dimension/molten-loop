@@ -3,7 +3,7 @@ name: mt-guide
 description: Molten Loop — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -25,6 +25,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 - Ask at most three questions, as plain numbered text in chat; for finite choices, list lettered options under the question (1a, 1b, 1c). Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Recommend one next skill. Mention an optional step only when it clearly earns its cost.
 - Do not recap whole documents. Point to the file paths.
+- **Know who can start each skill.** Skills with `disable-model-invocation: true` in their front matter are user-invoked: you cannot run them, so give the user the command to type (e.g. `/mt-spec`). The rest (mt-prototype, mt-verify, mt-review, mt-search) you may start yourself once the user agrees.
 
 ## Workflow
 
@@ -43,7 +44,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
    2. Is there an existing codebase?
    3. How big is it? (a. tiny, under an hour · b. a feature · c. a whole product)
 4. **Route** using the Skill map and Shortcuts.
-5. **Hand off.** Use the Recommendation format, then offer to start the recommended skill.
+5. **Hand off.** Use the Recommendation format. Offer to start a model-invoked skill; for a user-invoked one, give the command to type.
 
 ## Skill map
 
@@ -93,7 +94,7 @@ The spec is the handoff between the two disciplines. The product flow feeds the 
 | `brand/brand.md`, no `design/` | Brand done | **mt-design** |
 | `design/design.md` | Design system done | **mt-landing**, or **mt-discovery** if they're ready to build |
 | `discovery/<slug>.md` only | Feature explored | Its `molten_next_skill` (default **mt-spec**) |
-| `prototype/` or `mockup/<slug>.md`, no spec | Detour done | **mt-spec** |
+| `prototype/<slug>.md`, no spec | Detour done | **mt-spec** |
 | `spec/<slug>.md` `status: draft` | Spec unfinished | **mt-spec** to finish and approve |
 | `spec/<slug>.md` `status: approved`, no plan | Ready to plan | **mt-plan** |
 | `plan/<slug>.md` `draft` | Plan unfinished | **mt-plan** to finish and approve |
@@ -120,7 +121,7 @@ Not every job needs the whole loop. Use these when they fit:
 | Approved branch, just needs a PR | **mt-ship** |
 | Spec already written elsewhere | **mt-plan** (point it at that spec) |
 | Turn a spec into tickets or issues | **mt-plan** (creates issues in GitHub, Linear or Jira on approval) |
-| Clear feature, no unknowns | **mt-discovery** → **mt-spec**, skip both detours |
+| Clear feature, no unknowns | **mt-discovery** → **mt-spec**, skip mt-prototype |
 | Existing landing page to improve | **mt-landing** (audit mode) |
 | Only need research | **mt-search** |
 
@@ -134,7 +135,7 @@ Not every job needs the whole loop. Use these when they fit:
 **Optional:** <one detour worth considering, or omit this line>
 ```
 
-Then ask: "Want me to start **<skill>** now?"
+Then, for a model-invoked skill, ask: "Want me to start **<skill>** now?" For a user-invoked skill, end with: "Type `/<skill>` to start it."
 
 ## Checklist
 
@@ -142,4 +143,5 @@ Then ask: "Want me to start **<skill>** now?"
 - [ ] Read the recommended skill's `SKILL.md` before describing it or suggesting a step be skipped
 - [ ] Checked the recommended skill is installed (or gave the install command)
 - [ ] One clear next skill, in the recommendation format
+- [ ] User-invoked skills handed off as a command to type, not started
 - [ ] No files written

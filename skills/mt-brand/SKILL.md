@@ -1,6 +1,7 @@
 ---
 name: mt-brand
 description: Molten Loop — guide brand, positioning, persona, messaging, and voice discovery, then produce `molten-docs/brand/brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use mt-design after brand.md exists.
+disable-model-invocation: true
 metadata:
   author: switch-dimension
   version: "1.2.0"
