@@ -45,7 +45,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
    3. How big is it? (a. tiny, under an hour · b. a feature · c. a whole product)
 4. **Route** using the Skill map and Shortcuts.
 5. **Hand off.** Use the Recommendation format. Offer to start a model-invoked skill; for a user-invoked one, give the command to type.
-6. **Check AGENTS.md.** If `AGENTS.md` at the repository root has no `<!-- molten-loop:start -->` marker, add one line after the recommendation: "Want me to add a short Molten Loop section to `AGENTS.md` so every agent session knows these skills are here?" Ask once per session, and not if the user declined before.
+6. **Check AGENTS.md.** If `AGENTS.md` at the repository root has no `## Molten Loop skills` heading, add one line after the recommendation: "Want me to add a short Molten Loop section to `AGENTS.md` so every agent session knows these skills are here?" Ask once per session, and not if the user declined before.
 
 ## AGENTS.md setup
 
