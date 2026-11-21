@@ -1,9 +1,9 @@
 ---
 name: mt-guide
-description: Molten Loop — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
+description: Molten Loop — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Also adds a short Molten Loop section to the project's `AGENTS.md` so every agent session knows the skills are installed. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", wants to set up Molten Loop or add it to `AGENTS.md`, or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
 metadata:
   author: switch-dimension
-  version: "0.5.0"
+  version: "0.6.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -15,7 +15,7 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 
 **Input path:** `molten-docs/` at the repository root (read-only).
 
-**Output:** a short recommendation in chat. This skill writes no files.
+**Output:** a short recommendation in chat. The only file this skill writes is the Molten Loop section of `AGENTS.md` (see AGENTS.md setup), and only when the user agrees.
 
 ## Operating Rules
 
@@ -45,6 +45,11 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
    3. How big is it? (a. tiny, under an hour · b. a feature · c. a whole product)
 4. **Route** using the Skill map and Shortcuts.
 5. **Hand off.** Use the Recommendation format. Offer to start a model-invoked skill; for a user-invoked one, give the command to type.
+6. **Check AGENTS.md.** If `AGENTS.md` at the repository root has no `<!-- molten-loop:start -->` marker, add one line after the recommendation: "Want me to add a short Molten Loop section to `AGENTS.md` so every agent session knows these skills are here?" Ask once per session, and not if the user declined before.
+
+## AGENTS.md setup
+
+When the user asks to set up Molten Loop, asks to add it to `AGENTS.md`, or says yes to the offer in Workflow step 6, follow `references/agents-md.md`. It holds the section to add, how to create, append or update it, and the `CLAUDE.md` pointer for Claude Code.
 
 ## Skill map
 
@@ -144,4 +149,4 @@ Then, for a model-invoked skill, ask: "Want me to start **<skill>** now?" For a 
 - [ ] Checked the recommended skill is installed (or gave the install command)
 - [ ] One clear next skill, in the recommendation format
 - [ ] User-invoked skills handed off as a command to type, not started
-- [ ] No files written
+- [ ] No files written, except the `AGENTS.md` section after the user agreed

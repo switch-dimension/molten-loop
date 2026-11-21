@@ -12,10 +12,10 @@ Molten Loop is a set of AI agent skills from [Switch Dimension](https://switchdi
 Drop this prompt into your AI agent to get started:
 
 ```
-install all the skills in this repo to my project - https://github.com/switch-dimension/molten-loop
+install all the skills in this repo to my project, then run mt-guide to add the Molten Loop section to my AGENTS.md - https://github.com/switch-dimension/molten-loop
 ```
 
-Not sure where to start? Ask your agent to run **mt-guide**. It reads your `molten-docs/` folder, tells you where you are and recommends the next skill.
+Not sure where to start? Ask your agent to run **mt-guide**. It reads your `molten-docs/` folder, tells you where you are and recommends the next skill. It also offers to add a short Molten Loop section to your `AGENTS.md` (and point `CLAUDE.md` at it), so every agent session knows the skills are there and follows the loop.
 
 > Released under the MIT license — copy it, fork it, and use it as inspiration for your own evolving system. [Full install options below.](#installation)
 
