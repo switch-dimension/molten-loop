@@ -1,9 +1,9 @@
 ---
 name: mt-ship
-description: Molten Loop — seventh and final step of the Agent Development Loop. Takes a reviewed change to an open pull request — confirms review, verify, and plan are done, tidies the branch, re-runs build, tests, lint, and type-check, scans the whole branch for secrets with gitleaks and audits dependencies, updates docs and changelog, writes the PR from the spec, verify, and review docs, watches CI, closes out the tracker, then runs a short retrospective that suggests improvements. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`. Use when the user wants to ship, open a PR, "get this ready to merge", or wrap up a feature after review. Does not merge. Do not use before mt-review approves, or to fix bugs (use mt-build and mt-verify).
+description: "Molten Loop — Agent Development Loop step 7. Re-runs build, tests and lint, scans for secrets with gitleaks, tidies the branch, opens a PR with evidence, watches CI and the preview deploy, then runs a short retro. Never merges. Writes `molten-docs/ship/<slug>.md`. Use to ship, open a PR or wrap up a feature after review."
 metadata:
   author: switch-dimension
-  version: "0.3.0"
+  version: "0.4.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -91,6 +91,7 @@ If none of these is possible, run a basic pattern scan of the branch diff for ke
 - Push the branch.
 - Write the PR body from the existing docs using the template below, and open the PR (`gh pr create`, or the platform's equivalent). Include the issue keys so the tracker links it.
 - Watch CI on the PR (`gh pr checks --watch` or equivalent). If CI fails, record it, stop, and route the fix back through **mt-build**.
+- **Preview deploy:** if the project deploys previews (Vercel, Cloudflare, Netlify and similar), wait for the preview, read the build log if it failed, and smoke-test the preview URL. Follow [references/preview-deploy.md](references/preview-deploy.md). A failed deploy blocks the ship just like failing CI.
 
 ### 6. Close out
 
@@ -113,7 +114,8 @@ Always run it, and keep it short. Follow [references/retro.md](references/retro.
 - Acceptance criteria: <n> of <n> pass — see molten-docs/verify/<slug>.md
 - **Before:** <screenshot, output, or failing test>
 - **After:** <screenshot, output, or passing test>
-- Gates: build ✓ · tests ✓ · lint ✓ · types ✓ · secrets ✓ · deps ✓
+- Gates: build ✓ · tests ✓ · lint ✓ · types ✓ · secrets ✓ · deps ✓ · preview ✓
+- Preview: <preview URL, if the project deploys previews>
 
 ## Review
 <recommendation, and any suggestions deliberately left for later>
@@ -146,7 +148,7 @@ pr: <URL> | null
 | Gate | Command | Result |
 | --- | --- | --- |
 ## Docs and release (README, .env.example, CHANGELOG, version)
-## Pull request (link, CI result)
+## Pull request (link, CI result, preview URL and deploy result)
 ## Rollout and rollback (production deploys only)
 ## Database branch (if the plan required one: name, and whether it is still open)
 ## Blocked on (if result is blocked: what failed and which skill fixes it)
@@ -162,10 +164,11 @@ pr: <URL> | null
 - [ ] gitleaks scanned the branch history (or `partial` recorded with reason); dependency audit run if deps changed
 - [ ] Docs, `.env.example`, and CHANGELOG updated where needed
 - [ ] PR open with summary, evidence, merge danger, and links; CI watched
+- [ ] Preview deploy built and smoke-tested (or recorded as `partial` or `n/a` with the reason)
 - [ ] Tracker parent updated; plan `status: done`
 - [ ] `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md` written
 - [ ] PR not merged by this skill
 
 ## Extending
 
-Common additions: a preview-deploy check, an accessibility or performance budget gate, automatic release notes from the CHANGELOG, or posting the PR link to a team channel.
+Common additions: an accessibility or performance budget gate, automatic release notes from the CHANGELOG, or posting the PR link to a team channel.
