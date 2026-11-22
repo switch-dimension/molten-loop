@@ -3,7 +3,7 @@ name: mt-ship
 description: "Molten Loop — Agent Development Loop step 7. Re-runs build, tests and lint, scans for secrets with gitleaks, tidies the branch, opens a PR with evidence, watches CI and the preview deploy, then runs a short retro. Never merges. Writes `molten-docs/loop/<slug>/07-ship.md`. Use to ship, open a PR or wrap up a feature after review."
 metadata:
   author: switch-dimension
-  version: "0.5.0"
+  version: "0.6.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -27,6 +27,12 @@ Get an approved change into a clean, safe, well-explained pull request, then lea
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md`:
+  - Push and open the PR only when `auto.md` has `push: true`.
+  - Leave the commit history as it is. Don't offer to squash, delete branches, create a changelog or bump the version; note what you would have offered in the ship report.
+  - If the branch is behind its base, merge the base in when it merges cleanly. A conflict is a hard stop.
+  - If gitleaks can't run (installed or through Docker), don't push. That is a hard stop, not a `partial`.
+  - Write the retro, apply nothing, and leave every suggestion `pending` for the user.
 - **Never merge.** Push the branch and open the PR, then stop. Merging is the human's call.
 - **Stop on red.** If a readiness check or a gate fails, do not open the PR. Record the failure in the ship report and send the work back: code or test failures → **mt-build** then **mt-verify**; review not approved → **mt-review**; unfinished plan → **mt-build**.
 - **Do not fix features here.** Small tidy-ups (remove a debug log, add a missing `.env.example` entry, write the changelog line) are fine. Anything that changes behaviour goes back through **mt-build**.
@@ -120,6 +126,7 @@ Always run it, and keep it short. Follow [references/retro.md](references/retro.
 
 ## Review
 <recommendation, and any suggestions deliberately left for later>
+<auto mode only: **Auto mode:** <n> decisions made without a person, highest undo cost first — see molten-docs/loop/<slug>/auto.md>
 
 ## Merge danger
 **Door:** one-way | two-way — <can this be undone by reverting? migrations, data changes, and public API changes are usually one-way>

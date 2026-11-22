@@ -3,7 +3,7 @@ name: mt-review
 description: "Molten Loop — Agent Development Loop step 6. Reviews a change before merge with fresh-context Spec and Quality reviewers, checks each finding against the code and lists what it dismissed. Writes `molten-docs/loop/<slug>/06-review.md`. Use for a code review, pre-merge check or PR review. Not to prove behaviour (use mt-verify)."
 metadata:
   author: switch-dimension
-  version: "0.6.0"
+  version: "0.7.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -25,6 +25,7 @@ The session that built the code shares its blind spots, so the review is done by
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md`: take the intent from the spec's summary and goals instead of asking, run the second opinion for risky changes whenever a second-opinion CLI works (record `skipped` with the reason otherwise), and add each blocker to the task source without asking.
 - **Reviewers did not write the code.** Run the Spec and Quality reviews as fresh-context subagents, in parallel, read-only. If the host cannot spawn subagents, run each brief in turn in this session and mark the review **single-context** in the report, so the reader knows it is weaker.
 - **Keep the two axes apart.** Code can follow every standard and build the wrong thing, or build exactly the right thing badly. Report Spec and Quality separately and give each its own verdict, so one cannot hide the other.
 - **Every finding needs evidence:** `file:line`, what is wrong, why it matters, and a suggested fix for anything that blocks. A hypothetical ("what if this is null?") counts only if you can show the code path that makes it happen.

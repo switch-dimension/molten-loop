@@ -3,7 +3,7 @@ name: mt-discovery
 description: "Molten Loop — Agent Development Loop step 1. Interviews you about a feature before any code: goals, users, constraints, codebase context and the riskiest unknown. Writes `molten-docs/loop/<slug>/01-discovery.md`. Use to start a new feature, \"figure out what we're building\" or \"interview me\". Not for idea validation (use mt-validate)."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -16,11 +16,12 @@ Interview the user until you understand what they actually want. Discovery comes
 
 **Output path (canonical):** `molten-docs/loop/<slug>/01-discovery.md` at the repository root, where `<slug>` is a short kebab-case name for the work (a feature, fix or refactor). Create the folder if it does not exist. This folder holds every doc for this run of the loop, numbered in loop order: `01-discovery`, `02-prototype`, `03-spec`, `04-plan`, `05-verify`, `06-review`, `07-ship`, `08-retro`. Steps keep their number even when skipped.
 
-**Next skill:** **mt-spec** by default. Optionally run **mt-prototype** first, to click through the UX as a mockup with fake data or to test a risky technical question.
+**Next skill:** **mt-spec** by default. Optionally run **mt-prototype** first, to click through the UX as a mockup with fake data or to test a risky technical question. Or hand the rest of the loop to **mt-auto**, which runs spec through to an open PR without asking you again.
 
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md` and don't interview. Write the doc from the brief in `auto.md`, existing docs and the code, and put anything the brief leaves open under Assumptions with your default. Set `molten_next_skill: mt-prototype` only when the riskiest unknown is technical feasibility.
 - This is an **interview**, not a form. Ask **one numbered question at a time**, wait for the answer, and let each answer shape the next question. Number questions continuously (1, 2, 3 …) so the user can refer back.
 - For finite choices, list lettered options under the question (1a, 1b, 1c) and mark your recommended option. Do not use agent question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
 - Never ask what the code or existing `molten-docs/` artifacts already answer — read first, then ask about what is genuinely unknown.
@@ -43,7 +44,7 @@ Interview the user until you understand what they actually want. Discovery comes
    - Out of scope — what this explicitly is *not*
 4. **Surface risks.** Ask what would make this fail or what the user is least sure about. Name the **riskiest unknown** (UX, technical feasibility, data, third-party dependency).
 5. **Play it back.** Summarise your understanding in 5–8 lines and ask the user to correct it. Stop interviewing when corrections stop — do not pad.
-6. **Recommend the next step.** Default to **mt-spec**. Recommend an optional detour only when it earns its cost: **mt-prototype** if the user needs to see and iterate on the UX before committing (mockup path), or if the riskiest unknown is technical feasibility (prototype path).
+6. **Recommend the next step.** Default to **mt-spec**. Recommend an optional detour only when it earns its cost: **mt-prototype** if the user needs to see and iterate on the UX before committing (mockup path), or if the riskiest unknown is technical feasibility (prototype path). In interactive runs, also mention that **mt-auto** can take it from here, unattended, up to an open PR.
 7. **Write the discovery doc** and point the user to the file.
 
 ## Output template

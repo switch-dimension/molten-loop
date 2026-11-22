@@ -3,7 +3,7 @@ name: mt-verify
 description: "Molten Loop — Agent Development Loop step 5. Proves every spec acceptance criterion with evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/loop/<slug>/05-verify.md`. Use to test, verify, QA or confirm a feature is done. Not for code quality (use mt-review)."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -23,6 +23,7 @@ metadata:
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md`. Fix in-scope failures as usual; a failure that points to a spec or plan problem is a hard stop, not a question. When only the environment blocks a criterion (no credentials, no browser), mark it `not verified` with the reason and say so in the verdict, so the run can continue and the PR lists the gap.
 - **Evidence over assertion.** Every acceptance criterion gets a verdict of `pass`, `fail`, or `not verified`, with the evidence (command, test name, screenshot, observation). Never mark `pass` from reading code alone.
 - **Run it for real.** Passing unit tests are necessary, not sufficient. For anything user-facing, start the app and exercise the flow — in a browser (check the rendered page, console errors, and failed network requests) or via the CLI/API. Look at what actually happened, not only the exit code.
 - **Go beyond the happy path.** Try the spec's edge cases and error states, empty and invalid input, and at least one "what if this fails" case.

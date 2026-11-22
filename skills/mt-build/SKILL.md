@@ -3,7 +3,7 @@ name: mt-build
 description: "Molten Loop — Agent Development Loop step 4. Implements an approved plan one slice at a time with red-green-refactor on a feature branch, committing each green task and updating the task source (tracker or plan). Use to build, implement or start coding a planned feature. Not without a plan, or for spikes (use mt-prototype)."
 metadata:
   author: switch-dimension
-  version: "0.5.0"
+  version: "0.6.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -23,6 +23,7 @@ Turn the plan into working, tested code — one small slice at a time. The loop 
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md`: commit each green task on the feature branch (auto mode counts as asking for commits), work one task at a time without parallel worktrees, and at each checkpoint run the full suite and log the result in `auto.md` instead of pausing. A task still red after `max_fix_attempts` tries, or a plan or spec that's wrong in a way that changes an acceptance criterion, is a hard stop.
 - **Work on a feature branch.** Before the first task, check the current branch. If it is the default branch (`main`, `master`, or the repo's default), create `feat/<slug>`, including the issue key when there is a tracker (e.g. `feat/ENG-123-checkout`) so Linear and Jira link it. Tell the user the branch name. Never build directly on the default branch.
 - **Branch the database only when the plan says to.** Read Dependencies & setup in the plan. If it says a database branch is required, create one with the project's own tool before the first migration, name it after the feature branch, and point this checkout's env at it. Tell the user the database branch name. Never commit the connection string. If the plan says no, use the existing dev database and do not create one. If the plan forgot to decide and this task changes schema, stop and ask.
 - **One task at a time.** Pick the next unchecked task whose dependencies are done, lowest wave first. Do not start a second task until the first is green and committed.

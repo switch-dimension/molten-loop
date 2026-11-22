@@ -26,7 +26,7 @@ Every skill writes its output as Markdown under `molten-docs/`, so each step bui
 | Discipline | Skills | You end up with |
 | --- | --- | --- |
 | **Product Engineering** (once per product) | mt-validate → mt-brand → mt-design → mt-landing | A validated idea and a landing page to test it |
-| **Software Engineering** (once per feature) | mt-discovery → mt-spec → mt-plan → mt-build → mt-verify → mt-review → mt-ship, plus optional mt-prototype | A reviewed, secret-scanned pull request with evidence for every acceptance criterion |
+| **Software Engineering** (once per feature) | mt-discovery → mt-spec → mt-plan → mt-build → mt-verify → mt-review → mt-ship, plus optional mt-prototype and mt-auto (auto mode) | A reviewed, secret-scanned pull request with evidence for every acceptance criterion |
 | **Utility skills** | mt-guide, mt-search, mt-skill-manage | Routing, research and skill management. Start with **mt-guide** if you're unsure which skill to use |
 
 You don't need both. Testing an idea? Use Product Engineering on its own. Working in an existing codebase? Run Software Engineering once per feature.
@@ -61,6 +61,7 @@ Your coding agent is the production line. The Agent Development Loop takes one f
 | 5 | **mt-verify** | Checks every acceptance criterion against evidence (tests, the real app) and debugs failures from root cause. Writes `05-verify.md`. |
 | 6 | **mt-review** | Reviews the change with two fresh-context reviewers, Spec and Quality (correctness, readability, architecture, security, performance), and checks each finding against the code. Optional second opinion from another model. Writes `06-review.md`. |
 | 7 | **mt-ship** | Re-runs build, tests, lint and type-check, scans the branch for secrets with gitleaks, audits dependencies, tidies commits, updates docs and changelog, writes the PR with evidence and a "merge danger" call, and watches CI and the preview deploy. It never merges. Writes `07-ship.md`. |
+| auto mode | **mt-auto** | Runs the rest of the loop unattended, from a brief or from wherever the feature is, up to an open PR. Logs every decision it made for you in `auto.md` and pauses only for what it must not decide. See [Auto mode](#auto-mode). |
 
 Each run of the loop, whether it's a feature, a fix or a refactor, gets one folder, with its docs numbered in loop order:
 
@@ -74,9 +75,19 @@ molten-docs/loop/invite-members/
   06-review.md
   07-ship.md
   08-retro.md
+  auto.md            # only if you ran mt-auto
 ```
 
 Skip mt-prototype if the shape and feasibility are already clear. Already have a spec? Put it in `molten-docs/loop/<slug>/03-spec.md` and start at **mt-plan**.
+
+### Auto mode
+
+Don't want to answer every question? Hand the feature to **mt-auto** and come back to a pull request. It runs the same skills and writes the same docs, but each step answers its own questions from your code and docs and writes down what it chose.
+
+- **From the start:** "run mt-auto: let team owners invite members by email".
+- **Part-way through:** run **mt-discovery** yourself so the problem comes from you, then say "run mt-auto" or "auto from here".
+
+mt-auto asks everything it needs in one message (the brief, how far to go, and whether it may push), then works quietly. Every decision it made for you goes into `molten-docs/loop/<slug>/auto.md`, with how hard each one is to undo, and the PR links to it. It never merges, deploys or force-pushes. It pauses instead of guessing when scope would change, a secret turns up, something irreversible is next, access is missing, or fixes keep failing. Run mt-auto again to answer and resume, or say "stop auto mode" to take over by hand.
 
 ### The loop improves itself
 
@@ -108,10 +119,10 @@ Install all skills:
 npx skills add switch-dimension/molten-loop
 ```
 
-Install Software Engineering only, plus mt-guide. Drop `mt-prototype` if you don't want the optional step:
+Install Software Engineering only, plus mt-guide. Drop `mt-prototype` or `mt-auto` if you don't want the optional step or auto mode:
 
 ```bash
-npx skills add switch-dimension/molten-loop --skill mt-guide mt-discovery mt-prototype mt-spec mt-plan mt-build mt-verify mt-review mt-ship
+npx skills add switch-dimension/molten-loop --skill mt-guide mt-discovery mt-prototype mt-spec mt-plan mt-build mt-verify mt-review mt-ship mt-auto
 ```
 
 Install Product Engineering only, plus mt-guide:

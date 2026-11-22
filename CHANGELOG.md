@@ -21,23 +21,35 @@ Per-skill versions in skill front matter (independent of repo tags):
 
 | Skill | Version in `SKILL.md` |
 | --- | --- |
+| mt-auto | 0.1.0 |
 | mt-brand | 1.3.0 |
 | mt-design | 1.9.0 |
-| mt-build | 0.5.0 |
-| mt-discovery | 0.4.0 |
-| mt-guide | 0.7.0 |
+| mt-build | 0.6.0 |
+| mt-discovery | 0.5.0 |
+| mt-guide | 0.8.0 |
 | mt-landing | 1.2.0 |
-| mt-plan | 0.5.0 |
-| mt-prototype | 0.5.0 |
-| mt-review | 0.6.0 |
-| mt-ship | 0.5.0 |
+| mt-plan | 0.6.0 |
+| mt-prototype | 0.6.0 |
+| mt-review | 0.7.0 |
+| mt-ship | 0.6.0 |
 | mt-search | 1.0.0 |
 | mt-skill-manage | 1.4.0 |
-| mt-spec | 0.4.0 |
+| mt-spec | 0.5.0 |
 | mt-validate | 1.2.1 |
-| mt-verify | 0.4.0 |
+| mt-verify | 0.5.0 |
 
 ## [Unreleased]
+
+### Added
+
+- **Auto mode with mt-auto.** Hand a feature to the agent and come back to a pull request. Start it from a brief ("run mt-auto: …") or part-way through, for example after running **mt-discovery** yourself. mt-auto asks everything it needs in one kickoff message (the brief, how far to go, and permission to push), then runs the remaining steps through the same skills and docs, each in a fresh context where the host allows. It never merges, deploys or force-pushes, and it stops only for things it must not decide: scope changes, secrets, destructive or shared actions, missing access, or hitting its fix and loop-back limits.
+- **`molten-docs/loop/<slug>/auto.md`**, the run file. Auto mode is on for a feature while it has `status: running`. It holds the brief, a run log, every decision made without you (with its undo cost), and what's needed when a run pauses. Say "stop auto mode" to take the feature back; the docs are the same in both modes.
+
+### Changed
+
+- **Every loop skill has an Auto mode rule.** While `auto.md` is running, a skill answers its own questions from the docs and code, takes its recommended option, and logs the decision. These rules live in `mt-auto/references/auto-mode.md`. mt-prototype takes only the technical prototype path, mt-build commits each green task without pausing at checkpoints, and mt-ship leaves history alone, won't push without gitleaks, and applies no retro suggestions.
+- **Specs and plans record who approved them** with `approved_by: user | auto`. In auto mode, the PR body counts the decisions made without a person and links `auto.md`.
+- **mt-guide** recognises running and paused auto runs, and suggests mt-auto when a feature is ready to hand over. **mt-discovery** mentions mt-auto as a way to continue, and the AGENTS.md section explains auto mode.
 
 ## [3.0.0] - 2026-11-22
 

@@ -3,7 +3,7 @@ name: mt-plan
 description: "Molten Loop — Agent Development Loop step 3. Breaks an approved spec into vertical-slice tasks with checkpoints and parallel waves, and creates one issue per task in GitHub Issues, Linear or Jira when used. Writes `molten-docs/loop/<slug>/04-plan.md`. Use for an implementation plan, task breakdown or tickets. Not for requirements (use mt-spec)."
 metadata:
   author: switch-dimension
-  version: "0.5.0"
+  version: "0.6.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -27,6 +27,7 @@ Define **how** the spec gets built, in small steps an agent can execute and veri
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md`: review the plan against the done checklist yourself, set `status: approved` with `approved_by: auto`, and create tracker issues only when `molten-docs/config.md` already has `tracker_sync: true`. Without `config.md`, use the plan as the task source and don't create the file.
 - Read the codebase before planning. Name real files, modules, and patterns — not hypothetical ones.
 - Plan in **read-only mode**: no edits to application code while planning.
 - Slice **vertically**, not horizontally. Each task delivers one thin working path through the stack (UI → logic → data), not "all the database, then all the API, then all the UI".
@@ -93,6 +94,7 @@ slug: <slug>
 created: <YYYY-MM-DD>
 spec: molten-docs/loop/<slug>/03-spec.md
 status: draft | approved | in-progress | done
+approved_by: user | auto
 issue_tracker: github | linear | jira | local
 tracker_parent: <parent issue key or URL> | null
 molten_next_skill: mt-build

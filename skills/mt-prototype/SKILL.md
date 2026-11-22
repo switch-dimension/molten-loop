@@ -3,7 +3,7 @@ name: mt-prototype
 description: "Molten Loop — optional step before the spec. Builds a clickable UX mockup with fake data (default) or a time-boxed technical prototype for one feasibility question. Writes `molten-docs/loop/<slug>/02-prototype.md`. Use to mock up, wireframe, preview the UX, spike or de-risk a feature. Not for production code (use mt-build)."
 metadata:
   author: switch-dimension
-  version: "0.5.0"
+  version: "0.6.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -40,6 +40,7 @@ If both are risky, do the prototype first: a mockup of something that can't be b
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md` and take only the prototype path: a feasibility question can be answered without a person, an experience can't. If the risk is UX, skip the mockup and record that as an assumption for the spec. Where the workflow says to show the user, record what you ran and what you saw.
 - Confirm what you are building and what "done" looks like before writing code.
 - Use the cheapest medium that works. No auth, no real credentials, no polish beyond what the question needs.
 - Keep throwaway code isolated from production code and never merge it in as-is. Its lasting outputs are the decisions, not the code.

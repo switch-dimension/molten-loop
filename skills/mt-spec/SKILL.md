@@ -3,7 +3,7 @@ name: mt-spec
 description: "Molten Loop — Agent Development Loop step 2. Turns discovery (and any prototype) into a testable spec: acceptance criteria, data shape, edge cases and non-goals. Writes `molten-docs/loop/<slug>/03-spec.md`. Use for a spec, PRD, requirements or acceptance criteria. Not for task breakdown (use mt-plan)."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -23,6 +23,7 @@ Define **what** will be built and how we'll know it works — before any code. T
 ## Operating Rules
 
 - At the start of interactive runs, advise the user: "The best way to interact with this skill is to use voice mode to dictate your feedback."
+- **Auto mode.** When `molten-docs/loop/<slug>/auto.md` has `status: running` (see **mt-auto**), follow `mt-auto/references/auto-mode.md`: record assumptions instead of confirming them, review the gaps yourself, and set `status: approved` with `approved_by: auto`. A gap you can't close without changing the brief's scope is a hard stop.
 - Describe behaviour, not implementation. Leave file-level and task-level decisions to **mt-plan**.
 - Every requirement must be testable. Rewrite vague requirements ("fast", "intuitive") into observable criteria, and give each acceptance criterion an ID (AC-1, AC-2 …) so the plan and verification can reference it.
 - Surface assumptions early. List what you are assuming and let the user correct it before drafting further.
@@ -48,6 +49,7 @@ feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
 status: draft | approved
+approved_by: user | auto
 discovery: molten-docs/loop/<slug>/01-discovery.md
 prototype: molten-docs/loop/<slug>/02-prototype.md | null
 molten_next_skill: mt-plan

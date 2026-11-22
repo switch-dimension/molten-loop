@@ -3,7 +3,7 @@ name: mt-guide
 description: "Molten Loop — the \"start here\" router. Reads `molten-docs/` to show where each feature is and recommends the next skill, and can add a Molten Loop section to `AGENTS.md`. Use for \"what's next\", \"where do I start\", which skill to use, or setting up Molten Loop."
 metadata:
   author: switch-dimension
-  version: "0.7.0"
+  version: "0.8.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -74,6 +74,8 @@ Run in order, once per feature. A user who already has a spec can start at step 
 6. **mt-review** — pre-merge review by fresh-context Spec and Quality reviewers, with severity-labelled findings. → `molten-docs/loop/<slug>/06-review.md`
 7. **mt-ship** — final gates (build, tests, gitleaks, audit), tidy, PR, tracker close-out, then a short retro. Never merges. → `molten-docs/loop/<slug>/07-ship.md`, `molten-docs/loop/<slug>/08-retro.md`
 
+**Auto mode.** **mt-auto** runs the remaining steps unattended, from a brief or from wherever the feature is, up to an open PR. Steps answer their own questions and log each decision in `molten-docs/loop/<slug>/auto.md`. Offer it as the **Optional** line when a feature is past discovery and the user seems happy to hand over, or when they ask for auto mode, "take it from here" or a hands-off build.
+
 **Optional detour between discovery and spec.** Skip it when the shape and feasibility are already clear.
 
 - **mt-prototype** — a clickable UX mockup with fake data (default), or a time-boxed technical prototype for one risky feasibility question. → `molten-docs/loop/<slug>/02-prototype.md`
@@ -93,6 +95,8 @@ The spec is the handoff between the two disciplines. The product flow feeds the 
 | Found in `molten-docs/` | Means | Recommend |
 | --- | --- | --- |
 | Nothing | Fresh start | Ask (Workflow step 3) |
+| `loop/<slug>/auto.md` `status: running` | Auto mode is running this feature, or a run was cut off | Leave it alone if an agent is working on it; otherwise **mt-auto** to resume. Check this row before the rows below |
+| `loop/<slug>/auto.md` `status: paused` | Auto mode stopped for a decision | **mt-auto** — it shows the stop under Stops and resumes once you answer |
 | `validate/` only | Idea scored | Read the latest score's verdict. Promising → **mt-brand**. Weak → re-run the experiment, then **mt-validate** (re-validate mode) |
 | `brand/brand.md`, no `design/` | Brand done | **mt-design** |
 | `design/design.md` | Design system done | **mt-landing**, or **mt-discovery** if they're ready to build |
@@ -143,6 +147,7 @@ Not every job needs the whole loop. Use these when they fit:
 | Spec already written elsewhere | **mt-plan** (point it at that spec) |
 | Turn a spec into tickets or issues | **mt-plan** (creates issues in GitHub, Linear or Jira on approval) |
 | Clear feature, no unknowns | **mt-discovery** → **mt-spec**, skip mt-prototype |
+| Hand a feature to the agent and come back to a PR | **mt-auto** (from a brief, or after **mt-discovery**) |
 | Existing landing page to improve | **mt-landing** (audit mode) |
 | Only need research | **mt-search** |
 
