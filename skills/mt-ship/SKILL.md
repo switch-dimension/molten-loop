@@ -1,9 +1,9 @@
 ---
 name: mt-ship
-description: "Molten Loop — Agent Development Loop step 7. Re-runs build, tests and lint, scans for secrets with gitleaks, tidies the branch, opens a PR with evidence, watches CI and the preview deploy, then runs a short retro. Never merges. Writes `molten-docs/ship/<slug>.md`. Use to ship, open a PR or wrap up a feature after review."
+description: "Molten Loop — Agent Development Loop step 7. Re-runs build, tests and lint, scans for secrets with gitleaks, tidies the branch, opens a PR with evidence, watches CI and the preview deploy, then runs a short retro. Never merges. Writes `molten-docs/loop/<slug>/07-ship.md`. Use to ship, open a PR or wrap up a feature after review."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -14,12 +14,12 @@ metadata:
 
 Get an approved change into a clean, safe, well-explained pull request, then learn from how it went. Shipping is a gate, not a formality: if anything is red, stop and send the work back.
 
-**Input paths:** `molten-docs/review/<slug>.md` (recommendation `approve` or `approve-with-suggestions`) from **mt-review**, `molten-docs/verify/<slug>.md` (verdict `pass`), `molten-docs/plan/<slug>.md`, `molten-docs/spec/<slug>.md`, and `molten-docs/config.md` if it exists.
+**Input paths:** `molten-docs/loop/<slug>/06-review.md` (recommendation `approve` or `approve-with-suggestions`) from **mt-review**, `molten-docs/loop/<slug>/05-verify.md` (verdict `pass`), `molten-docs/loop/<slug>/04-plan.md`, `molten-docs/loop/<slug>/03-spec.md`, and `molten-docs/config.md` if it exists.
 
 **Output paths (canonical):**
 
-- `molten-docs/ship/<slug>.md` — gate results and the PR link
-- `molten-docs/retro/<slug>.md` — the retrospective
+- `molten-docs/loop/<slug>/07-ship.md` — gate results and the PR link
+- `molten-docs/loop/<slug>/08-retro.md` — the retrospective
 - A pushed branch and an open pull request
 
 **Next skill:** none — the feature loop ends here. After the PR merges, start the next feature with **mt-discovery**, or run **mt-guide**.
@@ -52,7 +52,7 @@ Get an approved change into a clean, safe, well-explained pull request, then lea
 
 - `git status` is clean: everything intended is committed, nothing stray is left untracked.
 - No debug leftovers in the diff: stray `console.log` / `print` / `debugger`, `.only` or skipped tests, commented-out code, new TODOs without an issue.
-- No throwaway prototype code (from `molten-docs/prototype/`) in the diff (scaffolded mockup pages are fine if the plan built on them).
+- No throwaway prototype code (from `molten-docs/loop/<slug>/prototype/`) in the diff (scaffolded mockup pages are fine if the plan built on them).
 - No `.env` files, credentials, large binaries, or generated files committed by mistake.
 - Commit history tells a clear story. If it is messy (fixups, "wip"), offer to squash or split and wait for approval.
 
@@ -83,7 +83,8 @@ If none of these is possible, run a basic pattern scan of the branch diff for ke
 
 - README or user docs updated if behaviour or setup changed.
 - New environment variables are in `.env.example` (or the project's equivalent); migrations are noted.
-- A CHANGELOG entry, if the project keeps one.
+- A CHANGELOG entry under `## [Unreleased]`, written for users (what changed for them, not which files moved), with **Added**, **Changed**, **Fixed** or **Removed** headings. Link the PR or issue when there is one.
+- **No changelog yet?** Offer to create `CHANGELOG.md` at the repository root in [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format, with a short header and an `## [Unreleased]` section holding this change. Ask once; if the user declines, note it in the ship report and don't ask again for this project (record `changelog: none` in `molten-docs/config.md`).
 - A version bump, if the project versions its releases and the user wants one now.
 
 ### 5. Pull request
@@ -98,11 +99,11 @@ If none of these is possible, run a basic pattern scan of the branch diff for ke
 - With `tracker_sync: true` in `molten-docs/config.md`: comment the PR link on the plan's `tracker_parent`, and make sure the PR closes it on merge (e.g. `Closes #<n>` on GitHub, or the issue key in the PR title or branch for Linear and Jira).
 - Set the plan's `status: done`.
 - **Production deploys only:** if this change goes to production on merge, add a short rollout note to the ship report: feature flag (if any), what to watch after deploy, and how to roll back.
-- Write `molten-docs/ship/<slug>.md`.
+- Write `molten-docs/loop/<slug>/07-ship.md`.
 
 ### 7. Retrospective
 
-Always run it, and keep it short. Follow [references/retro.md](references/retro.md). Write `molten-docs/retro/<slug>.md`, present the top suggestions in chat, and apply changes only with the user's approval.
+Always run it, and keep it short. Follow [references/retro.md](references/retro.md). Write `molten-docs/loop/<slug>/08-retro.md`, present the top suggestions in chat, and apply changes only with the user's approval.
 
 ## PR template
 
@@ -111,7 +112,7 @@ Always run it, and keep it short. Follow [references/retro.md](references/retro.
 <one or two sentences from the spec's objective, then the smallest view that makes the change clear: a short diagram, call tree, or before/after sketch>
 
 ## Evidence
-- Acceptance criteria: <n> of <n> pass — see molten-docs/verify/<slug>.md
+- Acceptance criteria: <n> of <n> pass — see molten-docs/loop/<slug>/05-verify.md
 - **Before:** <screenshot, output, or failing test>
 - **After:** <screenshot, output, or passing test>
 - Gates: build ✓ · tests ✓ · lint ✓ · types ✓ · secrets ✓ · deps ✓ · preview ✓
@@ -125,7 +126,7 @@ Always run it, and keep it short. Follow [references/retro.md](references/retro.
 **Blast radius:** <who or what is affected if this is wrong>
 
 ## Links
-Spec: molten-docs/spec/<slug>.md · Plan: molten-docs/plan/<slug>.md · Closes <issue>
+Spec: molten-docs/loop/<slug>/03-spec.md · Plan: molten-docs/loop/<slug>/04-plan.md · Closes <issue>
 ```
 
 ## Ship report template
@@ -135,7 +136,7 @@ Spec: molten-docs/spec/<slug>.md · Plan: molten-docs/plan/<slug>.md · Closes <
 feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
-spec: molten-docs/spec/<slug>.md
+spec: molten-docs/loop/<slug>/03-spec.md
 result: pr-open | blocked
 pr: <URL> | null
 ---
@@ -162,11 +163,11 @@ pr: <URL> | null
 - [ ] Working tree clean; no debug leftovers, throwaway code, or stray files
 - [ ] Build, tests, lint, type-check pass on the final commit
 - [ ] gitleaks scanned the branch history (or `partial` recorded with reason); dependency audit run if deps changed
-- [ ] Docs, `.env.example`, and CHANGELOG updated where needed
+- [ ] Docs, `.env.example`, and CHANGELOG updated (or a CHANGELOG offered if the project has none)
 - [ ] PR open with summary, evidence, merge danger, and links; CI watched
 - [ ] Preview deploy built and smoke-tested (or recorded as `partial` or `n/a` with the reason)
 - [ ] Tracker parent updated; plan `status: done`
-- [ ] `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md` written
+- [ ] `molten-docs/loop/<slug>/07-ship.md` and `molten-docs/loop/<slug>/08-retro.md` written
 - [ ] PR not merged by this skill
 
 ## Extending

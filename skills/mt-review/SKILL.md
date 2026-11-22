@@ -1,9 +1,9 @@
 ---
 name: mt-review
-description: "Molten Loop — Agent Development Loop step 6. Reviews a change before merge with fresh-context Spec and Quality reviewers, checks each finding against the code and lists what it dismissed. Writes `molten-docs/review/<slug>.md`. Use for a code review, pre-merge check or PR review. Not to prove behaviour (use mt-verify)."
+description: "Molten Loop — Agent Development Loop step 6. Reviews a change before merge with fresh-context Spec and Quality reviewers, checks each finding against the code and lists what it dismissed. Writes `molten-docs/loop/<slug>/06-review.md`. Use for a code review, pre-merge check or PR review. Not to prove behaviour (use mt-verify)."
 metadata:
   author: switch-dimension
-  version: "0.5.0"
+  version: "0.6.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -16,9 +16,9 @@ The last gate before merge. The question is not "is this perfect?" but "does thi
 
 The session that built the code shares its blind spots, so the review is done by reviewers who did not write it: fresh-context subagents, each with one job. This session then acts as the lead: it checks their findings against the code and decides what matters.
 
-**Input paths:** the diff (current branch vs. its base, or a PR), `molten-docs/spec/<slug>.md`, `molten-docs/plan/<slug>.md`, and `molten-docs/verify/<slug>.md` when present. If verification has not been run or its verdict is `fail`, recommend **mt-verify** first.
+**Input paths:** the diff (current branch vs. its base, or a PR), `molten-docs/loop/<slug>/03-spec.md`, `molten-docs/loop/<slug>/04-plan.md`, and `molten-docs/loop/<slug>/05-verify.md` when present. If verification has not been run or its verdict is `fail`, recommend **mt-verify** first.
 
-**Output path (canonical):** `molten-docs/review/<slug>.md`. Create the directory if it does not exist.
+**Output path (canonical):** `molten-docs/loop/<slug>/06-review.md`. Create the folder if it does not exist.
 
 **Next skill:** **mt-ship** when the recommendation is approve or approve with suggestions; **mt-build** (then **mt-verify**) when changes are requested.
 
@@ -65,7 +65,7 @@ The session that built the code shares its blind spots, so the review is done by
 feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
-spec: molten-docs/spec/<slug>.md
+spec: molten-docs/loop/<slug>/03-spec.md
 reviewed_commit: <sha>
 reviewers: <spec, quality, second opinion: model or skipped | single-context>
 recommendation: approve | approve-with-suggestions | request-changes
@@ -114,7 +114,7 @@ Leave out any empty subsection rather than writing "none" under it, except the S
 - [ ] Every kept finding checked against the code, with severity, location, and reason
 - [ ] Dismissed list shows what was dropped and why
 - [ ] Spec and Quality each have their own verdict; recommendation given
-- [ ] `molten-docs/review/<slug>.md` written
+- [ ] `molten-docs/loop/<slug>/06-review.md` written
 
 ## Extending
 

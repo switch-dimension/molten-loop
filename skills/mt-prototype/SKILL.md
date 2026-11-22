@@ -1,9 +1,9 @@
 ---
 name: mt-prototype
-description: "Molten Loop — optional step before the spec. Builds a clickable UX mockup with fake data (default) or a time-boxed technical prototype for one feasibility question. Writes `molten-docs/prototype/<slug>.md`. Use to mock up, wireframe, preview the UX, spike or de-risk a feature. Not for production code (use mt-build)."
+description: "Molten Loop — optional step before the spec. Builds a clickable UX mockup with fake data (default) or a time-boxed technical prototype for one feasibility question. Writes `molten-docs/loop/<slug>/02-prototype.md`. Use to mock up, wireframe, preview the UX, spike or de-risk a feature. Not for production code (use mt-build)."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -16,13 +16,13 @@ Build the cheapest thing that lets the user see or test the feature before anyon
 
 **Optional step.** Run this only when discovery leaves a real unknown. If the shape and feasibility are already clear, skip straight to **mt-spec**.
 
-**Input paths (all optional):** `molten-docs/discovery/<slug>.md` from **mt-discovery**, `molten-docs/design/design.md` from **mt-design**, `molten-docs/brand/brand.md` from **mt-brand**. If no discovery doc exists, ask what the user wants to see or test (or offer to run **mt-discovery** first).
+**Input paths (all optional):** `molten-docs/loop/<slug>/01-discovery.md` from **mt-discovery**, `molten-docs/design/design.md` from **mt-design**, `molten-docs/brand/brand.md` from **mt-brand**. If no discovery doc exists, ask what the user wants to see or test (or offer to run **mt-discovery** first).
 
 **Output paths (canonical):**
 
-- Throwaway code: `molten-docs/prototype/<slug>/` (or a clearly named throwaway branch or folder the user chooses)
+- Throwaway code: `molten-docs/loop/<slug>/prototype/` (or a clearly named throwaway branch or folder the user chooses)
 - Scaffolded mockup pages: the project's own frontend, on a branch
-- Decisions and learnings: `molten-docs/prototype/<slug>.md`
+- Decisions and learnings: `molten-docs/loop/<slug>/02-prototype.md`
 
 **Next skill:** **mt-spec**.
 
@@ -52,7 +52,7 @@ If both are risky, do the prototype first: a mockup of something that can't be b
 1. Read the inputs, name the riskiest unknown, and choose the path.
 2. Follow the workflow in the chosen reference file.
 3. Show it to the user (or run it with them) and iterate.
-4. Write `molten-docs/prototype/<slug>.md` using the template below, and point the user to it and to **mt-spec**.
+4. Write `molten-docs/loop/<slug>/02-prototype.md` using the template below, and point the user to it and to **mt-spec**.
 
 ## Output template
 
@@ -62,7 +62,7 @@ feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
 type: mockup | prototype
-discovery: molten-docs/discovery/<slug>.md | null
+discovery: molten-docs/loop/<slug>/01-discovery.md | null
 design: molten-docs/design/design.md | null
 mode: throwaway | scaffold            # mockup only
 location: <path, routes, or branch>
@@ -87,4 +87,4 @@ molten_next_skill: mt-spec
 - [ ] Throwaway code isolated from production code; scaffolded code on a branch
 - [ ] User has seen, clicked through, or run it, and feedback has been applied
 - [ ] Path-specific checklist in the reference file is complete
-- [ ] `molten-docs/prototype/<slug>.md` written with decisions for the spec
+- [ ] `molten-docs/loop/<slug>/02-prototype.md` written with decisions for the spec

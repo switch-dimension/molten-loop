@@ -3,7 +3,7 @@ name: mt-build
 description: "Molten Loop — Agent Development Loop step 4. Implements an approved plan one slice at a time with red-green-refactor on a feature branch, committing each green task and updating the task source (tracker or plan). Use to build, implement or start coding a planned feature. Not without a plan, or for spikes (use mt-prototype)."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -14,7 +14,7 @@ metadata:
 
 Turn the plan into working, tested code — one small slice at a time. The loop is simple: write a failing test, make it pass, clean up, save progress, move on.
 
-**Input path:** `molten-docs/plan/<slug>.md` (status `approved`) from **mt-plan**, and the spec it points to. Also `molten-docs/config.md`, which decides the task source (see `mt-plan/references/trackers.md` → Task source). When the tracker is the task source, the plan only links to issues: read each task's issue for its files, ACs, done-condition, and verify step. If there is no approved plan, recommend **mt-plan** first. For a tiny, obvious change, a one-line plan in chat is enough — say so and proceed.
+**Input path:** `molten-docs/loop/<slug>/04-plan.md` (status `approved`) from **mt-plan**, and the spec it points to. Also `molten-docs/config.md`, which decides the task source (see `mt-plan/references/trackers.md` → Task source). When the tracker is the task source, the plan only links to issues: read each task's issue for its files, ACs, done-condition, and verify step. If there is no approved plan, recommend **mt-plan** first. For a tiny, obvious change, a one-line plan in chat is enough — say so and proceed.
 
 **Output:** working code, tests, small commits, and task status updated in the task source: issues started and finished in the tracker, or checkboxes ticked in the plan when there is no tracker. Never both. No separate doc.
 

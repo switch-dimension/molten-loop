@@ -9,7 +9,7 @@ Build the smallest thing that answers one risky technical question: can this API
 - Time-box it. Agree the box with the user (an hour or two is typical) and stop when it runs out, even if the answer is "no" or "partially".
 - Choose the cheapest medium: a script, a single API call, a minimal integration, or a benchmark. Hardcoded data, no auth, no tests, no UI unless the question is about UI behaviour.
 - Use test or sandbox credentials only, and only if the user provides them. Never commit secrets; read them from environment variables.
-- Keep the code in `molten-docs/prototype/<slug>/` or a throwaway branch. Never merge it in as-is.
+- Keep the code in `molten-docs/loop/<slug>/prototype/` or a throwaway branch. Never merge it in as-is.
 
 ## Workflow
 

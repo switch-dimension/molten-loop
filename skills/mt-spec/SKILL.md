@@ -1,9 +1,9 @@
 ---
 name: mt-spec
-description: "Molten Loop — Agent Development Loop step 2. Turns discovery (and any prototype) into a testable spec: acceptance criteria, data shape, edge cases and non-goals. Writes `molten-docs/spec/<slug>.md`. Use for a spec, PRD, requirements or acceptance criteria. Not for task breakdown (use mt-plan)."
+description: "Molten Loop — Agent Development Loop step 2. Turns discovery (and any prototype) into a testable spec: acceptance criteria, data shape, edge cases and non-goals. Writes `molten-docs/loop/<slug>/03-spec.md`. Use for a spec, PRD, requirements or acceptance criteria. Not for task breakdown (use mt-plan)."
 metadata:
   author: switch-dimension
-  version: "0.3.0"
+  version: "0.4.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -14,9 +14,9 @@ metadata:
 
 Define **what** will be built and how we'll know it works — before any code. The spec is the contract between the human and the agent doing the implementation, and the thing every later step (plan, build, verify, review) is checked against.
 
-**Input paths:** `molten-docs/discovery/<slug>.md` (from **mt-discovery**), plus the optional `molten-docs/prototype/<slug>.md` (from **mt-prototype**, either a UX mockup or a technical prototype) when present. If neither exists, gather the essentials directly or offer to run **mt-discovery** first.
+**Input paths:** `molten-docs/loop/<slug>/01-discovery.md` (from **mt-discovery**), plus the optional `molten-docs/loop/<slug>/02-prototype.md` (from **mt-prototype**, either a UX mockup or a technical prototype) when present. If neither exists, gather the essentials directly or offer to run **mt-discovery** first.
 
-**Output path (canonical):** `molten-docs/spec/<slug>.md`. Create the directory if it does not exist.
+**Output path (canonical):** `molten-docs/loop/<slug>/03-spec.md`. Create the folder if it does not exist.
 
 **Next skill:** **mt-plan**.
 
@@ -48,8 +48,8 @@ feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
 status: draft | approved
-discovery: molten-docs/discovery/<slug>.md
-prototype: molten-docs/prototype/<slug>.md | null
+discovery: molten-docs/loop/<slug>/01-discovery.md
+prototype: molten-docs/loop/<slug>/02-prototype.md | null
 molten_next_skill: mt-plan
 ---
 
@@ -83,7 +83,7 @@ molten_next_skill: mt-plan
 - [ ] Edge cases and error states covered
 - [ ] Testing approach stated
 - [ ] Open questions visible, not guessed
-- [ ] `molten-docs/spec/<slug>.md` written; status set to `approved` once the user signs off
+- [ ] `molten-docs/loop/<slug>/03-spec.md` written; status set to `approved` once the user signs off
 
 ## Extending
 

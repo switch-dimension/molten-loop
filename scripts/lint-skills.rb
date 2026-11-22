@@ -90,6 +90,12 @@ docs.each do |file|
   prose.scan(/(?<![\w\/.-])mt-([a-z][a-z0-9-]*[a-z0-9])(?![\w\/-])/).flatten.uniq.each do |n|
     error.(file, "mentions unknown skill: mt-#{n}") unless skill_names.include?("mt-#{n}")
   end
+
+  # Loop docs live in molten-docs/loop/<slug>/; only an "Older layout" section may name the old folders.
+  current = text.gsub(/^### Older layout\n.*?(?=^##? )/m, "")
+  current.scan(%r{molten-docs/(?:discovery|prototype|mockup|spec|plan|verify|review|ship|retro)/}).uniq.each do |old|
+    error.(file, "uses the pre-v3 doc layout: #{old} (use molten-docs/loop/<slug>/)")
+  end
 end
 
 # The per-skill version table in CHANGELOG.md must match the front matter.

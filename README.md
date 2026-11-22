@@ -53,20 +53,34 @@ Your coding agent is the production line. The Agent Development Loop takes one f
 
 | Step | Skill | What it does for you |
 | --- | --- | --- |
-| 1 | **mt-discovery** | Interviews you before any code is written: goals, users, constraints, codebase context and the riskiest unknown. Writes `molten-docs/discovery/<slug>.md`. |
-| optional | **mt-prototype** | See or test the feature before you spec it. Mainly a clickable UX mockup with mocked data and a fake API, either throwaway or as real pages in your app. When the risk is technical, it builds a time-boxed prototype that answers one feasibility question instead. Writes `molten-docs/prototype/<slug>.md`. |
-| 2 | **mt-spec** | Turns discovery (and any prototype or mockup learnings) into a testable spec with acceptance criteria, data shape, edge cases and non-goals. Writes `molten-docs/spec/<slug>.md`. |
-| 3 | **mt-plan** | Breaks the spec into ordered vertical-slice tasks with checkpoints, grouped into parallel waves so several agents or people can work at once. Says whether the feature needs a database branch. Writes `molten-docs/plan/<slug>.md`. |
+| 1 | **mt-discovery** | Interviews you before any code is written: goals, users, constraints, codebase context and the riskiest unknown. Writes `01-discovery.md`. |
+| optional | **mt-prototype** | See or test the feature before you spec it. Mainly a clickable UX mockup with mocked data and a fake API, either throwaway or as real pages in your app. When the risk is technical, it builds a time-boxed prototype that answers one feasibility question instead. Writes `02-prototype.md`. |
+| 2 | **mt-spec** | Turns discovery (and any prototype or mockup learnings) into a testable spec with acceptance criteria, data shape, edge cases and non-goals. Writes `03-spec.md`. |
+| 3 | **mt-plan** | Breaks the spec into ordered vertical-slice tasks with checkpoints, grouped into parallel waves so several agents or people can work at once. Says whether the feature needs a database branch. Writes `04-plan.md`. |
 | 4 | **mt-build** | Implements the plan one slice at a time on a feature branch with a lightweight red-green-refactor loop, keeping the app runnable. Creates a database branch only when the plan requires one, and gives parallel agents their own worktrees. |
-| 5 | **mt-verify** | Checks every acceptance criterion against evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/verify/<slug>.md`. |
-| 6 | **mt-review** | Reviews the change with two fresh-context reviewers, Spec and Quality (correctness, readability, architecture, security, performance), and checks each finding against the code. Optional second opinion from another model. Writes `molten-docs/review/<slug>.md`. |
-| 7 | **mt-ship** | Re-runs build, tests, lint and type-check, scans the branch for secrets with gitleaks, audits dependencies, tidies commits, updates docs and changelog, writes the PR with evidence and a "merge danger" call, and watches CI. It never merges. Writes `molten-docs/ship/<slug>.md`. |
+| 5 | **mt-verify** | Checks every acceptance criterion against evidence (tests, the real app) and debugs failures from root cause. Writes `05-verify.md`. |
+| 6 | **mt-review** | Reviews the change with two fresh-context reviewers, Spec and Quality (correctness, readability, architecture, security, performance), and checks each finding against the code. Optional second opinion from another model. Writes `06-review.md`. |
+| 7 | **mt-ship** | Re-runs build, tests, lint and type-check, scans the branch for secrets with gitleaks, audits dependencies, tidies commits, updates docs and changelog, writes the PR with evidence and a "merge danger" call, and watches CI and the preview deploy. It never merges. Writes `07-ship.md`. |
 
-Skip mt-prototype if the shape and feasibility are already clear. Already have a spec? Put it in `molten-docs/spec/<slug>.md` and start at **mt-plan**.
+Each run of the loop, whether it's a feature, a fix or a refactor, gets one folder, with its docs numbered in loop order:
+
+```
+molten-docs/loop/invite-members/
+  01-discovery.md
+  02-prototype.md    # only if you ran mt-prototype
+  03-spec.md
+  04-plan.md
+  05-verify.md
+  06-review.md
+  07-ship.md
+  08-retro.md
+```
+
+Skip mt-prototype if the shape and feasibility are already clear. Already have a spec? Put it in `molten-docs/loop/<slug>/03-spec.md` and start at **mt-plan**.
 
 ### The loop improves itself
 
-Every **mt-ship** run ends with a retro (`molten-docs/retro/<slug>.md`). It looks at what slowed the feature down or slipped through (a missing check, an unclear doc, a skill step that misfired) and suggests concrete fixes, so each feature leaves the loop a little better than it found it.
+Every **mt-ship** run ends with a retro (`08-retro.md`). It looks at what slowed the feature down or slipped through (a missing check, an unclear doc, a skill step that misfired) and suggests concrete fixes, so each feature leaves the loop a little better than it found it.
 
 ### Issue trackers
 
@@ -116,7 +130,7 @@ All skills use the **`mt-<name>`** convention so they are easy to distinguish fr
 
 ## Changelog
 
-Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v2.0.0**.
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v3.0.0**.
 
 ## License
 

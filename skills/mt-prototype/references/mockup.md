@@ -8,7 +8,7 @@ Ask this first, before building anything, unless the user already said which the
 
 **"Should this mockup be throwaway or scaffold real pages?"**
 
-- a. **Throwaway** — a standalone mockup in `molten-docs/prototype/<slug>/`, isolated from the codebase. Fastest, zero risk to the app, deleted or archived once the design is settled. Best for early exploration and unfamiliar ideas.
+- a. **Throwaway** — a standalone mockup in `molten-docs/loop/<slug>/prototype/`, isolated from the codebase. Fastest, zero risk to the app, deleted or archived once the design is settled. Best for early exploration and unfamiliar ideas.
 - b. **Scaffold real pages** — build the pages, routes, and components in the project's actual frontend, using its stack, design system, and conventions, with mocked data behind a fake API layer. Costs more up front, but the approved screens become the real UI and only the data layer is swapped in later. Best when the stack is established and the design is fairly clear.
 - c. **Choose for me** — recommend one with a one-sentence reason, based on whether a frontend already exists and how settled the design is.
 
@@ -18,7 +18,7 @@ In throwaway mode, also ask how many variations to build (recommend 3 for early 
 
 | | Throwaway | Scaffold real pages |
 | --- | --- | --- |
-| Location | `molten-docs/prototype/<slug>/` | Project's own routes and components |
+| Location | `molten-docs/loop/<slug>/prototype/` | Project's own routes and components |
 | Stack | Zero-build static (default) | Project's existing stack, no new dependencies unless approved |
 | Data | `data/*.js` fixtures + `api.js` | `mocks/<slug>/` fixtures + a mock implementation of the real data-access module |
 | Fate of the code | Discarded; keep screens, flows, copy, data shape | Kept; only the mock data layer is replaced |
@@ -63,7 +63,7 @@ In throwaway mode, also ask how many variations to build (recommend 3 for early 
 ## Suggested structure (throwaway, zero-build default)
 
 ```
-molten-docs/prototype/<slug>/
+molten-docs/loop/<slug>/prototype/
   index.html          # shell, nav, mockup banner, scenario switcher
   styles.css          # tokens from design.md (or neutral defaults)
   app.js              # router + screen rendering
@@ -75,7 +75,7 @@ molten-docs/prototype/<slug>/
 
 With several variations, put each in its own subfolder (`v1/`, `v2/`, `v3/`) sharing one `data/` folder and `api.js`.
 
-Use ES modules and plain `.js` fixtures (not `fetch('x.json')`), because browsers block local JSON fetches on `file://`. If the user wants real `.json` files, serve the folder with `npx serve molten-docs/prototype/<slug>` instead and say so.
+Use ES modules and plain `.js` fixtures (not `fetch('x.json')`), because browsers block local JSON fetches on `file://`. If the user wants real `.json` files, serve the folder with `npx serve molten-docs/loop/<slug>/prototype` instead and say so.
 
 ## Fake API layer
 
@@ -100,8 +100,8 @@ Add feature-specific scenarios when they matter (e.g. trial expired, over quota,
 
 Scaffold mode: use the project's normal dev command and give the user the route(s) to visit. The rest of this section is for throwaway mode.
 
-- Zero-build: open `molten-docs/prototype/<slug>/index.html` in a browser.
-- Served: `npx serve molten-docs/prototype/<slug>` (only if JSON files or routing require it).
+- Zero-build: open `molten-docs/loop/<slug>/prototype/index.html` in a browser.
+- Served: `npx serve molten-docs/loop/<slug>/prototype` (only if JSON files or routing require it).
 - Reset: reload the page; in-memory changes are discarded.
 - Include these instructions in the mockup's `README.md` and repeat them to the user.
 

@@ -1,9 +1,9 @@
 ---
 name: mt-plan
-description: "Molten Loop — Agent Development Loop step 3. Breaks an approved spec into vertical-slice tasks with checkpoints and parallel waves, and creates one issue per task in GitHub Issues, Linear or Jira when used. Writes `molten-docs/plan/<slug>.md`. Use for an implementation plan, task breakdown or tickets. Not for requirements (use mt-spec)."
+description: "Molten Loop — Agent Development Loop step 3. Breaks an approved spec into vertical-slice tasks with checkpoints and parallel waves, and creates one issue per task in GitHub Issues, Linear or Jira when used. Writes `molten-docs/loop/<slug>/04-plan.md`. Use for an implementation plan, task breakdown or tickets. Not for requirements (use mt-spec)."
 metadata:
   author: switch-dimension
-  version: "0.4.0"
+  version: "0.5.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -14,11 +14,11 @@ metadata:
 
 Define **how** the spec gets built, in small steps an agent can execute and verify one at a time. A good plan makes the build boring: every task is obvious, small, and checkable.
 
-**Input paths:** `molten-docs/spec/<slug>.md` from **mt-spec**. If missing or still `draft`, recommend finishing **mt-spec** first; proceed only if the user insists, and note the risk in the plan. Also `molten-docs/config.md` if it exists.
+**Input paths:** `molten-docs/loop/<slug>/03-spec.md` from **mt-spec**. If missing or still `draft`, recommend finishing **mt-spec** first; proceed only if the user insists, and note the risk in the plan. Also `molten-docs/config.md` if it exists.
 
 **Output paths (canonical):**
 
-- `molten-docs/plan/<slug>.md` — the plan. Create the directory if it does not exist.
+- `molten-docs/loop/<slug>/04-plan.md` — the plan. Create the folder if it does not exist.
 - `molten-docs/config.md` — issue-tracker settings, written once per project (see Issue tracker).
 - Issues in the project's tracker, when one is used.
 
@@ -91,7 +91,7 @@ Either way, the plan stays the map: approach, architecture, setup, phase order, 
 feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
-spec: molten-docs/spec/<slug>.md
+spec: molten-docs/loop/<slug>/03-spec.md
 status: draft | approved | in-progress | done
 issue_tracker: github | linear | jira | local
 tracker_parent: <parent issue key or URL> | null
@@ -150,7 +150,7 @@ Database branch: yes | no — <provider, or why not>
 - [ ] A checkpoint closes each phase
 - [ ] Database branch marked yes or no, with the provider or the reason to skip it
 - [ ] `molten-docs/config.md` exists with the chosen tracker (or `local`)
-- [ ] `molten-docs/plan/<slug>.md` written; status set to `approved` once the user signs off
+- [ ] `molten-docs/loop/<slug>/04-plan.md` written; status set to `approved` once the user signs off
 - [ ] With tracker sync on: issues created after approval with no duplicates, and the plan's task blocks reduced to issue links (no task details, checkboxes, or status left in the plan)
 
 ## Extending

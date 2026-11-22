@@ -1,9 +1,9 @@
 ---
 name: mt-discovery
-description: "Molten Loop — Agent Development Loop step 1. Interviews you about a feature before any code: goals, users, constraints, codebase context and the riskiest unknown. Writes `molten-docs/discovery/<slug>.md`. Use to start a new feature, \"figure out what we're building\" or \"interview me\". Not for idea validation (use mt-validate)."
+description: "Molten Loop — Agent Development Loop step 1. Interviews you about a feature before any code: goals, users, constraints, codebase context and the riskiest unknown. Writes `molten-docs/loop/<slug>/01-discovery.md`. Use to start a new feature, \"figure out what we're building\" or \"interview me\". Not for idea validation (use mt-validate)."
 metadata:
   author: switch-dimension
-  version: "0.3.0"
+  version: "0.4.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -14,7 +14,7 @@ metadata:
 
 Interview the user until you understand what they actually want. Discovery comes before any prototype, spec, or plan. A vague request that goes straight to code produces the wrong thing quickly — this skill spends a few minutes of questions to avoid that.
 
-**Output path (canonical):** `molten-docs/discovery/<slug>.md` at the repository root, where `<slug>` is a short kebab-case name for the feature. Create the directory if it does not exist.
+**Output path (canonical):** `molten-docs/loop/<slug>/01-discovery.md` at the repository root, where `<slug>` is a short kebab-case name for the work (a feature, fix or refactor). Create the folder if it does not exist. This folder holds every doc for this run of the loop, numbered in loop order: `01-discovery`, `02-prototype`, `03-spec`, `04-plan`, `05-verify`, `06-review`, `07-ship`, `08-retro`. Steps keep their number even when skipped.
 
 **Next skill:** **mt-spec** by default. Optionally run **mt-prototype** first, to click through the UX as a mockup with fake data or to test a risky technical question.
 
@@ -77,7 +77,7 @@ molten_next_skill: mt-spec | mt-prototype
 - [ ] Problem, users, outcome, constraints, and scope captured
 - [ ] Facts, assumptions, and open questions kept separate
 - [ ] Riskiest unknown named
-- [ ] `molten-docs/discovery/<slug>.md` written with `molten_next_skill` set
+- [ ] `molten-docs/loop/<slug>/01-discovery.md` written with `molten_next_skill` set
 
 ## Extending
 

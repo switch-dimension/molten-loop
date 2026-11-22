@@ -1,9 +1,9 @@
 ---
 name: mt-verify
-description: "Molten Loop — Agent Development Loop step 5. Proves every spec acceptance criterion with evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/verify/<slug>.md`. Use to test, verify, QA or confirm a feature is done. Not for code quality (use mt-review)."
+description: "Molten Loop — Agent Development Loop step 5. Proves every spec acceptance criterion with evidence (tests, the real app) and debugs failures from root cause. Writes `molten-docs/loop/<slug>/05-verify.md`. Use to test, verify, QA or confirm a feature is done. Not for code quality (use mt-review)."
 metadata:
   author: switch-dimension
-  version: "0.3.0"
+  version: "0.4.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core
@@ -14,9 +14,9 @@ metadata:
 
 "Seems to work" is not evidence. Verify checks the finished feature against the spec and records proof for each acceptance criterion: a passing test, a command output, a screenshot, or an observed behaviour.
 
-**Input paths:** `molten-docs/spec/<slug>.md` (acceptance criteria), `molten-docs/plan/<slug>.md` (what was built), and the code.
+**Input paths:** `molten-docs/loop/<slug>/03-spec.md` (acceptance criteria), `molten-docs/loop/<slug>/04-plan.md` (what was built), and the code.
 
-**Output path (canonical):** `molten-docs/verify/<slug>.md`. Create the directory if it does not exist.
+**Output path (canonical):** `molten-docs/loop/<slug>/05-verify.md`. Create the folder if it does not exist.
 
 **Next skill:** **mt-review**.
 
@@ -54,7 +54,7 @@ metadata:
 feature: <name>
 slug: <slug>
 created: <YYYY-MM-DD>
-spec: molten-docs/spec/<slug>.md
+spec: molten-docs/loop/<slug>/03-spec.md
 verdict: pass | fail | partial
 molten_next_skill: mt-review
 ---
@@ -83,7 +83,7 @@ molten_next_skill: mt-review
 - [ ] The real app was exercised for user-facing behaviour
 - [ ] Edge cases and error states tried
 - [ ] Failures fixed from root cause with a regression test, or reported to the user
-- [ ] `molten-docs/verify/<slug>.md` written with an honest verdict
+- [ ] `molten-docs/loop/<slug>/05-verify.md` written with an honest verdict
 
 ## Extending
 
