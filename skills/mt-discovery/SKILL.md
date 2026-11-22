@@ -1,6 +1,6 @@
 ---
 name: mt-discovery
-description: Molten Loop — first step of the Agent Development Loop. Interviews the user about a feature or product problem before any code is written — what they actually want, who it is for, constraints, existing codebase context, risks, and open questions — then writes `molten-docs/discovery/<slug>.md`. Use when the user wants to start a new feature, explore an idea for implementation, "figure out what we're building", "interview me", or kick off the dev loop. Do not use for business-idea validation (use mt-validate) or for writing a spec when discovery is already done (use mt-spec).
+description: "Molten Loop — Agent Development Loop step 1. Interviews you about a feature before any code: goals, users, constraints, codebase context and the riskiest unknown. Writes `molten-docs/discovery/<slug>.md`. Use to start a new feature, \"figure out what we're building\" or \"interview me\". Not for idea validation (use mt-validate)."
 metadata:
   author: switch-dimension
   version: "0.3.0"

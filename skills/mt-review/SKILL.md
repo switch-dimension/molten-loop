@@ -1,6 +1,6 @@
 ---
 name: mt-review
-description: Molten Loop — sixth step of the Agent Development Loop. Reviews the finished change before it merges with two fresh-context reviewers run in parallel — Spec (does it do what the spec asked, no more and no less?) and Quality (correctness, readability, architecture, security, performance) — then checks every finding against the code, drops false positives with a visible Dismissed list, and writes `molten-docs/review/<slug>.md`. Can add an optional second opinion from a different model. Use when the user wants a code review, a pre-merge check, a "is this ready to ship" pass, or a review of a diff or PR. Do not use to add features (use mt-build) or to prove behaviour (use mt-verify).
+description: "Molten Loop — Agent Development Loop step 6. Reviews a change before merge with fresh-context Spec and Quality reviewers, checks each finding against the code and lists what it dismissed. Writes `molten-docs/review/<slug>.md`. Use for a code review, pre-merge check or PR review. Not to prove behaviour (use mt-verify)."
 metadata:
   author: switch-dimension
   version: "0.5.0"

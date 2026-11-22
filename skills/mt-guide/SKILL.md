@@ -1,6 +1,6 @@
 ---
 name: mt-guide
-description: Molten Loop — the "start here" router for Molten skills. Reads `molten-docs/` to show where a project is and what comes next, or asks a few short questions and recommends the right Molten skill. Also adds a short Molten Loop section to the project's `AGENTS.md` so every agent session knows the skills are installed. Use when the user asks which Molten skill to use, "what's next", "where am I", "where do I start", "help me use these skills", wants to set up Molten Loop or add it to `AGENTS.md`, or mentions mt-guide. Do not use when the user has already named the skill they want; run that skill directly.
+description: "Molten Loop — the \"start here\" router. Reads `molten-docs/` to show where each feature is and recommends the next skill, and can add a Molten Loop section to `AGENTS.md`. Use for \"what's next\", \"where do I start\", which skill to use, or setting up Molten Loop."
 metadata:
   author: switch-dimension
   version: "0.6.0"

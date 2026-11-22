@@ -1,6 +1,6 @@
 ---
 name: mt-search
-description: Molten Loop — routes search and research queries to Cursor WebSearch, last30days, agent-reach, or parallel-cli web search. Use when the user asks to search, look up, research, google, find recent discussion, check a social platform, fetch current web info, or mentions mt-search.
+description: "Molten Loop — routes search and research to the right backend: web search, recent social discussion (last30days), platform fetch or cited web research. Use to search, look up, research or find recent discussion on a topic."
 metadata:
   author: switch-dimension
   version: "1.0.0"

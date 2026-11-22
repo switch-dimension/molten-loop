@@ -1,6 +1,6 @@
 ---
 name: mt-prototype
-description: Molten Loop — optional step in the Agent Development Loop, between discovery and spec. Builds something fast to see or test before speccing a feature, on one of two paths. Mockup path (the default) — a frontend-only, clickable UX mockup with mocked JSON and a fake API layer, either throwaway or scaffolded as real pages in the project. Prototype path — a time-boxed technical spike that answers one risky feasibility question. Records decisions in `molten-docs/prototype/<slug>.md`. Use when the user wants to mock up, wireframe in code, preview or iterate on the UX with fake data, prototype, spike, try out, test whether something is feasible, or de-risk a feature before speccing it. Skip it when the shape and feasibility are already clear. Do not use for production implementation or backend work (use mt-build).
+description: "Molten Loop — optional step before the spec. Builds a clickable UX mockup with fake data (default) or a time-boxed technical prototype for one feasibility question. Writes `molten-docs/prototype/<slug>.md`. Use to mock up, wireframe, preview the UX, spike or de-risk a feature. Not for production code (use mt-build)."
 metadata:
   author: switch-dimension
   version: "0.4.0"
