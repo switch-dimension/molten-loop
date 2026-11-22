@@ -1,9 +1,9 @@
 ---
 name: mt-design
-description: "Molten Loop — creates a practical Google DESIGN.md–spec visual system at `molten-docs/design/design.md`, plus `molten-docs/design/example.html`. Use for design system, design.md, or translating the brand brief into visual direction. Start by choosing one design surface (landing page, web product, mobile product, or desktop product), then load the matching surface reference and ask whether the user wants a fast draft or detailed pass. Do not use for brand strategy or messaging; use mt-brand for those."
+description: "Molten Loop — turns the brand into a DESIGN.md visual system for one surface (landing, web, mobile or desktop) with a live preview. Writes `molten-docs/design/design.md`. Use for a design system, design tokens or visual direction. Not for brand strategy (use mt-brand)."
 metadata:
   author: switch-dimension
-  version: "1.8.0"
+  version: "1.9.0"
   molten-suite: molten-os
   molten-category: product
   molten-tier: core
@@ -147,66 +147,22 @@ Even in the detailed path, start with plain-language choices and translate the a
 - Create or update the design brief only after the user has provided enough signal **and** any Pinterest reference has been confirmed or explicitly skipped.
 - If file writing is available, write **`molten-docs/design/design.md`** and **`molten-docs/design/example.html`** (create parent directories as needed). Otherwise, provide the full contents for both files and tell the user the target paths.
 
-## When To Use Multiple-Choice vs Open Questions
+## Question Style And "Choose For Me"
 
-In Fast draft mode, offer lettered options only when:
+Offer lettered options only for plain-language outcomes from a finite set (surface, overall feel, product type, visual archetype), never design-system internals. Use open questions for free text (reference sites, existing colors, things to avoid), for pushing back on vague answers, and for confirming a summary.
 
-- The answer is one or a few choices from a finite set.
-- The user benefits from seeing tradeoffs side-by-side.
-- The choices are plain-language outcomes, not design-system internals.
+The user must always be able to delegate a decision to you:
 
-Examples of good multiple-choice questions in this skill:
+- **Multiple choice:** end with a lettered option such as "Choose for me — recommend based on brand.md". When picked, choose the option that best fits `brand.md` and the context, say "Picking **X** because [one-sentence reason]", and move on. Confirm first only if the choice is costly to reverse (primary color, type families).
+- **Free text:** end with "…or say *you choose* and I'll propose a value based on `brand.md`." When they defer, propose an exact value (hex, font name, dimension) with a one-sentence rationale, never a range.
+- **Already constrained:** if `brand.md` or the conversation already settles it, don't ask; apply it and say so.
 
-- Design surface: landing page / web product / mobile product / desktop product
-- Overall feel in plain language, such as serious / friendly / premium / energetic / calm / utilitarian
-- Product type, such as SaaS app / marketing site / developer tool / consumer app / internal tool
-- Visual archetype, such as Calm SaaS / Premium Editorial / Developer Tool / Friendly Consumer / Bold Launch Page
-- Whether to proceed from the brand brief alone or include optional reference websites
-
-Ask an open numbered question (no options) when:
-
-- The answer is free text: reference websites, existing brand colors, things to avoid, or context about the product.
-- You're pushing back on a vague answer.
-- You're confirming or summarizing before moving phases.
-
-## The "Choose For Me" Pattern (Mandatory)
-
-Every question in this skill must allow the user to delegate the decision to you. You are operating as a design consultant — the user should be able to say "you decide" at any point and trust that you will make a reasoned, brand-aligned choice.
-
-### For multiple-choice questions
-
-Always append a final lettered option that names the action and the basis for your judgment. Examples:
-
-- `"Choose for me — recommend based on brand.md"`
-- `"You decide — pick what fits the brand best"`
-- `"Choose for me — go with the safest default for this brand maturity"`
-
-When the user picks the choose-for-me option:
-
-1. Pick the option that best aligns with `brand.md` signal, the strategic context, and DESIGN.md best practice.
-2. State your choice explicitly: *"Picking **X** because [one-sentence reason tied to brand.md or research]."*
-3. Continue to the next phase without further confirmation unless the choice is reversible-only-with-effort (e.g. primary color, type families).
-
-### For free-text questions in chat
-
-End the question with an explicit opt-out:
-
-> "…or say *you choose* and I'll propose a value based on `brand.md`."
-
-When the user opts out, propose a specific concrete value plus a one-sentence rationale. Do not propose ranges or "around X" — give the exact value the token will hold.
-
-### Example flow
+Example:
 
 > **1. What should the product feel like?**
 > a) Serious  b) Friendly  c) Premium  d) Energetic  e) Calm  f) Utilitarian  g) **Choose for me — recommend based on brand.md**
 >
-> **User picks Choose for me.**
->
-> **Agent reply:** "Picking **calm SaaS** because `brand.md` calls for quiet confidence and a clear, trustworthy interface. I'll infer the detailed tokens from that direction."
-
-### When *not* to defer
-
-If the user has already given an explicit constraint in `brand.md` or earlier in the conversation, do not re-ask. Apply the constraint directly and tell the user you applied it.
+> *User picks g.* "Picking **calm SaaS** because `brand.md` calls for quiet confidence and a clear, trustworthy interface."
 
 ## Ingest The Brand Brief
 
@@ -242,113 +198,9 @@ If this is the first design run, create a complete `design.md` for the chosen su
 
 ## Visual Reference Discovery (Pinterest)
 
-After ingesting `brand.md`, curate Pinterest inspiration **before** locking design tokens or writing `design.md`. This gives non-designers concrete visual direction without asking them to articulate taste in design-system jargon.
+After ingesting `brand.md`, curate Pinterest inspiration **before** locking design tokens or writing `design.md`. This gives non-designers concrete visual direction without asking them to describe taste in design-system jargon. Follow [references/pinterest.md](references/pinterest.md): five surface-specific search terms, open them, have the user pick one pin, interpret it, and confirm before applying it.
 
-Do not write `design.md` until this phase is complete (reference confirmed) or explicitly skipped.
-
-### Generate 5 Pinterest search terms
-
-Derive **exactly five** search terms from `brand.md`, the chosen **design surface**, any plain-language feel answers already given, and the **Pinterest search angles** in the selected surface reference. Do this **before** presenting the phase to the user.
-
-Rules:
-
-- Keep all five terms inside the chosen surface. Do not spread searches across unrelated concepts (palette-only, generic typography, abstract mood boards, editorial print, logo marks, etc.).
-- Use the anchor words and example patterns from the selected surface reference.
-- Add **one** brand/context modifier from `brand.md` where natural (category, feel, B2B/B2C, dark/light), but the surface anchor words stay mandatory in every term.
-- Keep terms **3–6 words**, visual and Pinterest-friendly — not abstract strategy words ("modern", "premium", "aesthetic" alone).
-- **Exclude** anti-references and things the user said to avoid.
-- Do not duplicate the same pattern twice; vary within the chosen surface's patterns.
-- If the five terms do not all clearly belong to the chosen surface, rewrite them before showing the list to the user.
-
-### Offer the phase
-
-Skip this subsection if the user already attached a reference image or explicitly said to skip references.
-
-Do **not** ask whether they want to browse Pinterest. Present what you have already prepared, then offer to open it.
-
-In chat, say something like:
-
-> I've collected some visual inspiration for you on Pinterest that aligns with your brand. I can open those for you to take a look and pick one example as a favourite to aid design direction.
->
-> Here are the five searches I put together:
->
-> 1. …
-> 2. …
-> 3. …
-> 4. …
-> 5. …
-
-Then ask:
-
-**"Shall I open these Pinterest searches for you?"**
-
-Options:
-
-- **Yes — open them so I can pick a favourite**
-- **Skip — infer from brand.md alone**
-- **Choose for me — recommend based on brand.md**
-
-If they pick **Choose for me**: recommend **Skip** when `brand.md` already has strong visual references or a clear maturity/personality signal; recommend **Yes** when the brand brief is thin on visual cues or the user chose the detailed path. State the recommendation in one sentence, then follow it.
-
-Only generate new search terms if the user asks for different angles; do not re-ask whether to use Pinterest at all.
-
-### Open 5 Pinterest tabs
-
-Build one URL per term:
-
-`https://www.pinterest.com/search/pins/?q={url_encoded_term}`
-
-(URL-encode spaces as `+` or `%20`.)
-
-Open all five in the user's **default browser**, in separate tabs. Prefer the first method that works in the current environment; do not block the workflow if opening fails.
-
-1. **Shell (macOS):** `open "url1" "url2" "url3" "url4" "url5"`
-2. **Shell (Linux):** `xdg-open "url1" "url2" ...` (one invocation with multiple URLs when supported)
-3. **Shell (Windows):** `start "" "url1"` for each URL
-4. **`cursor-app-control` `open_resource`:** one call per URL, if available
-5. **Fallback:** paste the five links as markdown so the user can open them manually
-
-After opening (or on fallback), tell the user:
-
-> Take a look through the five tabs. Pick **one** pin as your favourite — the example that feels closest to the direction you want. Paste or attach **that single image** here (screenshot, saved image, or drag-and-drop). I'll describe what I take from it before we lock the design system.
-
-Wait for the image. Do not proceed to token decisions until they submit one reference **or** say to skip (e.g. "skip", "no reference", "continue without").
-
-### Interpret the reference image
-
-When the user attaches **one** image, analyze it and summarize in plain language under these headings:
-
-- **Colors** — dominant palette, accent usage, light vs dark, warm vs cool, saturation
-- **Typography feel** — sans/serif/mono tendency, weight contrast, headline vs body hierarchy (exact font names only when obvious)
-- **Layout & density** — whitespace, grid vs editorial, information density
-- **Shape & depth** — corner radius, borders vs shadows, flat vs layered
-- **Mood** — 2–3 concrete adjectives tied to what you see, not vague taste words
-- **Adopt into tokens** — specific implications for `design.md` (example: "12px radius", "warm off-white surface ~#FAF8F5", "single saturated accent on neutral base")
-- **Avoid** — anything that conflicts with `brand.md` anti-references or would hurt usability (contrast, tap targets)
-
-If the image is unclear, low resolution, or off-topic, say so and ask for a different pin or permission to skip.
-
-### Confirmation gate (mandatory)
-
-Before applying the reference to tokens, get explicit approval with a numbered multiple-choice question:
-
-**"Does this match what you liked in the reference?"**
-
-Options:
-
-- **Yes — lock this direction into the design system**
-- **Adjust — I'll describe what to change**
-- **Different reference — I'll paste another image**
-- **Skip reference — use brand.md only**
-
-Then:
-
-- **Yes:** map the adopted signals into concrete YAML tokens and prose in `design.md`. Record in **Assumptions**: `Visual reference: user-selected pin → [one-line summary of adopted signals]`.
-- **Adjust:** take their correction, revise the interpretation, and ask again until they confirm or skip.
-- **Different reference:** repeat interpret + confirmation with the new image only (still one reference at a time).
-- **Skip:** do not let the discarded reference influence tokens; continue from `brand.md` alone.
-
-Never silently apply a reference. The user must confirm (or skip) before `design.md` is written.
+Do not write `design.md` until this phase is complete (reference confirmed) or explicitly skipped. Never silently apply a reference.
 
 ## Detailed Second Pass
 
@@ -360,241 +212,11 @@ Even in the detailed second pass, prefer plain-language questions first. Transla
 
 ## Generate `molten-docs/design/design.md`
 
-When enough information is gathered, write the file at **`molten-docs/design/design.md`** with this structure. The YAML front matter is normative; the prose is rationale.
-
-The file should clearly separate:
-
-- **Shared core:** reusable brand system tokens and principles that should remain stable across landing, web, mobile, and desktop surfaces.
-- **Surface layer:** the chosen surface's layout, density, component priorities, and preview guidance.
-
-```markdown
----
-version: alpha
-name: [Design System Name]
-description: [One sentence describing the system]
-colors:
-  primary: "#RRGGBB"
-  secondary: "#RRGGBB"
-  tertiary: "#RRGGBB"
-  neutral: "#RRGGBB"
-  surface: "#RRGGBB"
-  on-surface: "#RRGGBB"
-  error: "#RRGGBB"
-typography:
-  headline-display:
-    fontFamily: [Family]
-    fontSize: [Size]
-    fontWeight: [Weight]
-    lineHeight: [Line height]
-    letterSpacing: [Tracking]
-  headline-lg:
-    fontFamily: [Family]
-    fontSize: [Size]
-    fontWeight: [Weight]
-    lineHeight: [Line height]
-  body-md:
-    fontFamily: [Family]
-    fontSize: 16px
-    fontWeight: 400
-    lineHeight: 1.6
-  label-md:
-    fontFamily: [Family]
-    fontSize: 14px
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: 0.02em
-  label-sm:
-    fontFamily: [Family]
-    fontSize: 12px
-    fontWeight: 500
-    lineHeight: 1
-    letterSpacing: 0.05em
-rounded:
-  none: 0px
-  sm: 4px
-  md: 8px
-  lg: 12px
-  full: 9999px
-spacing:
-  base: 8px
-  xs: 4px
-  sm: 8px
-  md: 16px
-  lg: 32px
-  xl: 64px
-  gutter: 24px
-  margin: 32px
-components:
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-surface}"
-    typography: "{typography.label-md}"
-    rounded: "{rounded.md}"
-    padding: 12px
-  button-primary-hover:
-    backgroundColor: "{colors.tertiary}"
----
-
-# [Design System Name]
-
-Visual identity for [product name]. Pairs with `molten-docs/brand/brand.md` for brand strategy and voice.
-
-## Overview
-
-[Holistic description of look and feel. Personality, target audience, emotional response. Reference brand.md. State the design surface — landing page, web product, mobile product, or desktop product — and what this system optimizes for.]
-
-## Shared Core
-
-[Describe the stable cross-surface choices: color philosophy, type family pairing, radius philosophy, spacing base, motion posture, iconography posture, and accessibility defaults. If this file inherited an existing shared core, say so.]
-
-## Colors
-
-[Shared core. Prose describing each key palette with its role. One bullet per palette, named with descriptive language (e.g. "Midnight Forest Green") and the hex from tokens.]
-
-- **Primary (#RRGGBB):** [Role and when to use]
-- **Secondary (#RRGGBB):** [Role and when to use]
-- **Tertiary (#RRGGBB):** [Role and when to use]
-- **Neutral (#RRGGBB):** [Role and when to use]
-
-## Typography
-
-[Shared core. Prose describing the type strategy. Family choices and their roles.]
-
-- **Headlines:** [Family, weight, voice it creates]
-- **Body:** [Family, size, readability decisions]
-- **Labels:** [Family, treatment, where it appears]
-
-## Layout
-
-[Surface layer. Grid model, max width, spacing rhythm, containment strategy for the chosen surface. Use the selected `references/*.md` file.]
-
-## Elevation & Depth
-
-[How visual hierarchy is conveyed. Shadows, borders, tonal layers, or flat.]
-
-## Shapes
-
-[Corner radius philosophy and where deviations occur.]
-
-## Components
-
-[Surface layer. Per-component prose: anatomy, variants, states, accessibility notes. Token specifics live in front matter. Include only components relevant to the chosen surface from the selected reference — e.g. hero/CTA/proof for landing page; nav/forms/tables for web product; tab bar/list rows/FAB for mobile product; window chrome/menus/panes for desktop product.]
-
-### Buttons
-
-- Anatomy: [parts]
-- Variants: [primary, secondary, ...]
-- States: default, hover, focus, active, disabled
-- Accessibility: [target size, focus ring, ARIA]
-
-### Input Fields
-
-[Same structure]
-
-### Cards
-
-[Same structure]
-
-## Do's and Don'ts
-
-- Do [specific rule]
-- Do [specific rule]
-- Don't [specific rule]
-- Don't [specific rule]
-- Don't [specific rule]
-
-## Motion & Animation
-
-[Optional. Only if defined.]
-
-## Iconography
-
-[Optional. Only if defined.]
-
-## Accessibility
-
-[Optional. Minimum contrast, focus rings, target sizes, reduced-motion.]
-
-## Open Questions And Assumptions
-
-### Open Questions
-- [Question that still needs a user decision]
-
-### Assumptions
-- [Assumption made due to missing information]
-- [Design surface: chosen surface]
-- [Shared core: newly created or inherited from existing design.md]
-
-### Next Step
-Reference `molten-docs/design/design.md` from your agent config (CLAUDE.md, AGENTS.md, `.cursor/rules/`) so it loads every session. Validate with `npx @google/design.md lint molten-docs/design/design.md`.
-```
+When enough information is gathered, read [references/design-template.md](references/design-template.md) and write **`molten-docs/design/design.md`** with that structure. The YAML front matter is normative; the prose is rationale. Clearly separate the **shared core** (tokens and principles stable across every surface) from the **surface layer** (the chosen surface's layout, density, components and preview guidance).
 
 ## Generate `molten-docs/design/example.html`
 
-After writing `molten-docs/design/design.md`, create **`molten-docs/design/example.html`** as a human-readable preview of the design system.
-
-Purpose:
-
-- Make the abstract design tokens tangible for non-designers.
-- Give the user something they can open immediately in a browser.
-- Help future agents understand the intended look and feel from a visual specimen.
-
-Rules:
-
-- Keep it self-contained: one HTML file with inline CSS. Do not require a framework, build step, package install, CDN, or external assets.
-- Use CSS custom properties derived from the finalized tokens in `design.md`.
-- Do not create production app code. This is documentation and a preview only.
-- Keep the example polished but small enough to scan quickly.
-- If a token is missing or ambiguous, use the assumption already recorded in `design.md`; do not ask another question just for the preview.
-
-The preview should include:
-
-- A short title and one-sentence design thesis (name the design surface).
-- Color swatches with token names and hex values.
-- Typography samples for display/headline, body, label, and caption styles.
-- Button examples: primary, secondary, destructive, disabled, and focus-visible.
-- Input examples: default, focused, error, and disabled (web and mobile product surfaces).
-- Card examples showing spacing, radius, borders, shadows, and content hierarchy.
-- One realistic combined UI section scoped to the chosen surface:
-  - **Landing page:** hero + CTA + one proof/feature section
-  - **Web product:** nav/sidebar slice with cards, form, or table
-  - **Mobile product:** phone-width frame (~390px), status/header area, list or tab bar, thumb-friendly controls
-  - **Desktop product:** desktop-width app window with title/menu area, sidebar or split pane, and keyboard-oriented control surface
-
-Use this structure:
-
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>[Design System Name] Preview</title>
-    <style>
-      :root {
-        --color-primary: [value from design.md];
-        --color-secondary: [value from design.md];
-        --color-tertiary: [value from design.md];
-        --color-neutral: [value from design.md];
-        --color-surface: [value from design.md];
-        --color-on-surface: [value from design.md];
-        --color-error: [value from design.md];
-        --font-body: [font stack from design.md];
-        --radius-sm: [value from design.md];
-        --radius-md: [value from design.md];
-        --space-sm: [value from design.md];
-        --space-md: [value from design.md];
-        --space-lg: [value from design.md];
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Preview content goes here. -->
-  </body>
-</html>
-```
-
-Prefer real-looking labels over placeholders. For example, "Start project", "Book a demo", "Email address", and "Launch readiness" are better than "Button" or "Card title".
+After writing `design.md`, create **`molten-docs/design/example.html`**: a self-contained, single-file visual preview of the tokens (swatches, type, buttons, inputs, cards and one realistic section for the chosen surface). Follow [references/example-html.md](references/example-html.md).
 
 ## Quality Pass
 

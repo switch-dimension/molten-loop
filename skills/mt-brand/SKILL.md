@@ -1,9 +1,9 @@
 ---
 name: mt-brand
-description: Molten Loop — guide brand, positioning, persona, messaging, and voice discovery, then produce `molten-docs/brand/brand.md`. Use for brand guide, brand.md, positioning brief, or product brand strategy. Do not use for visual design systems or `design.md`; use mt-design after brand.md exists.
+description: "Molten Loop — interviews you on audience, pain, positioning, message and voice, then writes `molten-docs/brand/brand.md`. Use for a brand guide, positioning brief or messaging. Not for visual design (use mt-design)."
 metadata:
   author: switch-dimension
-  version: "1.2.0"
+  version: "1.3.0"
   molten-suite: molten-os
   molten-category: product
   molten-tier: core
@@ -13,6 +13,8 @@ metadata:
 # Brand Brief
 
 You help the user turn brand strategy into a practical brand brief that can guide the rest of an app build.
+
+**Input path (optional):** the latest `molten-docs/validate/product-score-N.md` from **mt-validate**. When it exists, read it first and don't re-ask what it already answers (audience, pain, alternatives, riskiest assumption).
 
 **Output path (canonical):** `molten-docs/brand/brand.md` at the repository root. Create the `molten-docs/brand/` directory if it does not exist.
 
@@ -37,28 +39,7 @@ Do not jump into visual design decisions. This skill creates the brand foundatio
 - Create or update the brand brief only after the user has provided enough signal.
 - If file writing is available, write `**molten-docs/brand/brand.md`** (create parent directories as needed). Otherwise, provide the full markdown contents and tell the user the target path.
 
-## When To Use Multiple-Choice vs Open Questions
-
-Ask a numbered question with lettered options when:
-
-- The answer is naturally one or a few choices from a finite set.
-- The user benefits from seeing the tradeoffs side-by-side.
-- You're forcing a decision between competing brand directions.
-
-Examples of good multiple-choice questions in this skill:
-
-- Awareness level (unaware / problem-aware / solution-aware / product-aware / most-aware)
-- Brand maturity (playful / polished / editorial / technical / utilitarian / luxury / expressive / calm)
-- Voice axes (formal vs casual, expert vs friendly, bold vs reserved)
-- Buyer vs user (same person / different person / committee)
-- Pricing position (free / low-cost / mid-market / premium / enterprise)
-- Persona archetype, narrative arc style, primary objection type
-
-Ask an open numbered question (no options) when:
-
-- The answer must be free text: product name, one-liner, problem description, customer quote, claim, anti-reference, custom CTA copy, microcopy rule.
-- You're pushing back on a vague answer.
-- You're confirming or summarizing before moving phases.
+Use lettered options when the answer comes from a finite set or you're forcing a choice between brand directions (each phase lists these). Use open questions for free text, for pushing back on a vague answer, and for confirming a summary before moving on.
 
 ## Phase 1: Brand Foundation
 
@@ -181,210 +162,7 @@ If the user gives visual references like "Apple-like", "Stripe-like", or "Linear
 
 ## Phase 6: Generate `molten-docs/brand/brand.md`
 
-When enough information is gathered, write the file at `**molten-docs/brand/brand.md`** with this structure.
-
-```markdown
-# Brand Brief
-
-## 1. Brand Snapshot
-
-### Product Name
-[Name]
-
-### One-Sentence Description
-[Plain-language description]
-
-### Category
-[Category and market context]
-
-### Core Promise
-[The transformation or outcome the brand promises]
-
-### Strategic Summary
-[Short paragraph connecting audience, problem, differentiation, and brand implications]
-
-## 2. Positioning
-
-### Target Market
-[Specific market and qualifying context]
-
-### Primary Audience
-[Who this is for]
-
-### Buyer And User
-[Clarify whether buyer and daily user differ]
-
-### Problem
-[Painful, specific problem]
-
-### Alternatives
-[Current alternatives or workarounds]
-
-### Differentiation
-[Why this product should win]
-
-### Positioning Statement
-For [audience] who [problem], [product] is a [category] that helps them [outcome], unlike [alternative], because [mechanism/proof].
-
-### Category Expectations
-[What the market expects from this kind of product]
-
-### Beliefs To Challenge
-[Old assumptions the brand must replace]
-
-## 3. Audience And Persona
-
-### Primary Persona
-- Name: [Persona label]
-- Role: [Role]
-- Context: [When and where they encounter the problem]
-- Skill level: [Novice/intermediate/expert and relevant vocabulary]
-- Motivation: [What they want]
-- Anxiety: [What they fear]
-- Objections: [Reasons they might hesitate]
-- Success moment: [How they know it worked]
-- Trust requirements: [What they need to believe before acting]
-
-### Secondary Personas
-- [Only include if meaningfully different from the primary persona]
-
-### Jobs To Be Done
-- Functional: [Task they need to complete]
-- Emotional: [How they want to feel]
-- Social: [How they want to be perceived]
-
-### Awareness Level
-[Unaware/problem-aware/solution-aware/product-aware/most-aware, plus implications]
-
-## 4. Brand Personality
-
-### Personality Traits
-- [Trait], not [bad extreme]
-- [Trait], not [bad extreme]
-- [Trait], not [bad extreme]
-
-### Voice Principles
-- [Rule for headlines]
-- [Rule for body copy]
-- [Rule for CTAs]
-- [Rule for errors and empty states]
-- [Rule for sales or trust-building moments]
-
-### Words To Use
-- [Word or phrase]
-
-### Words To Avoid
-- [Word or phrase]
-
-### Tone By Context
-- First impression: [Tone]
-- Onboarding: [Tone]
-- Core workflow: [Tone]
-- Error or failure: [Tone]
-- Success moment: [Tone]
-- Sales or conversion moment: [Tone]
-
-## 5. Messaging System
-
-### Primary Message
-[Main message the product should lead with]
-
-### Supporting Messages
-- [Supporting point]
-- [Supporting point]
-- [Supporting point]
-
-### Narrative Arc
-- Before: [User's current state]
-- Struggle: [Why current options fail]
-- Breakthrough: [What new belief or mechanism changes things]
-- After: [User's improved state]
-
-### Proof Points
-- [Evidence, credential, customer result, demo, data point, or mechanism]
-
-### Objection Handling
-- Objection: [Objection]
-  Response: [How the brand answers it]
-
-### Claims And Evidence
-
-- Claim: [Claim the brand can make]
-  Evidence needed: [Proof required before using it]
-
-## 6. Brand Experience Principles
-
-### Experience Promises
-- [Promise the product experience must fulfill]
-- [Promise the product experience must fulfill]
-- [Promise the product experience must fulfill]
-
-### Product Behavior Principles
-- [How the product should behave]
-- [How the product should explain itself]
-- [How the product should handle user uncertainty]
-
-### Trust And Credibility
-- [Trust signal]
-- [Risk reducer]
-- [Proof requirement]
-
-### Things The Brand Must Never Do
-- [Anti-principle]
-- [Anti-principle]
-- [Anti-principle]
-
-## 7. Market And Competitive Context
-
-### Alternatives
-- [Competitor, workaround, or status quo]
-
-### Differentiation Map
-- We are more: [Quality]
-- We are less: [Quality]
-- We are similar to: [Reference point]
-- We are different from: [Reference point]
-
-### Category Language
-- Terms to use: [Terms]
-- Terms to avoid: [Terms]
-- Concepts that need explanation: [Concepts]
-
-## 8. Content And Naming Rules
-
-### Naming Conventions
-- Product features: [Naming rule]
-- Plans or tiers: [Naming rule, if relevant]
-- Actions and CTAs: [Naming rule]
-- Events or states: [Naming rule]
-
-### CTA Patterns
-- Primary CTA: [Pattern]
-- Secondary CTA: [Pattern]
-- Avoid: [Pattern]
-
-### Microcopy Rules
-- [Rule]
-- [Rule]
-- [Rule]
-
-## 9. Design Handoff
-
-This brand document does not define visual design details.
-
-Create or consult `molten-docs/design/design.md` (via **mt-design**) for visual design decisions, interface design, and design-system implementation guidance.
-
-## 10. Open Questions And Assumptions
-
-### Open Questions
-- [Question that still needs a user decision]
-
-### Assumptions
-- [Assumption made due to missing information]
-
-### Next Step
-Run **mt-design** to create or consult `molten-docs/design/design.md`.
-```
+When enough information is gathered, read [references/brand-template.md](references/brand-template.md) and write `molten-docs/brand/brand.md` with that structure: brand snapshot, positioning, audience and persona, personality, messaging, experience principles, competitive context, content and naming rules, design handoff, and open questions.
 
 ## Quality Pass
 
