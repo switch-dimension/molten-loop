@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v1.3.1`** (recommended) | Tag `main` today — README product/utility split and `molten-category` metadata. |
+| **`v2.0.0`** (recommended) | Molten Loop: the Agent Development Loop, skills renamed to `mt-*`, mt-mockup merged into mt-prototype. |
+| **`v1.3.1`** | README product/utility split and `molten-category` metadata. |
 | **`v1.3.0`** | Adds `molten-search` search router skill. |
 | **`v1.2.0`** | Adds `molten-validate`, surface-routed `molten-design`, README/changelog updates, and the full public skill pack. |
 | **`v1.1.0`** | Includes the full initial skill pack, `molten-skill-manage`, MIT license, and the conversion-focused README with install prompts. |
@@ -19,8 +20,8 @@ Per-skill versions in skill front matter (independent of repo tags):
 
 | Skill | Version in `SKILL.md` |
 | --- | --- |
-| mt-brand | 1.2.0 |
-| mt-design | 1.8.0 |
+| mt-brand | 1.3.0 |
+| mt-design | 1.9.0 |
 | mt-build | 0.4.0 |
 | mt-discovery | 0.3.0 |
 | mt-guide | 0.6.0 |
@@ -28,31 +29,27 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-plan | 0.4.0 |
 | mt-prototype | 0.4.0 |
 | mt-review | 0.5.0 |
-| mt-ship | 0.3.0 |
+| mt-ship | 0.4.0 |
 | mt-search | 1.0.0 |
 | mt-skill-manage | 1.4.0 |
 | mt-spec | 0.3.0 |
-| mt-validate | 1.2.0 |
+| mt-validate | 1.2.1 |
 | mt-verify | 0.3.0 |
 
 ## [Unreleased]
 
-### Changed
+## [2.0.0] - 2026-11-21
 
-- **AGENTS.md setup.** **mt-guide** offers to add a short Molten Loop section to the project's `AGENTS.md`, under a `## Molten Loop skills` heading so later runs update it in place. It tells every agent session that the skills are installed, which ones the user starts with `/`, and that the spec is the contract. For Claude Code it offers to add `@AGENTS.md` to `CLAUDE.md`. The section lives in `mt-guide/references/agents-md.md`. The README install prompt now asks for it.
+Molten Loop: the Agent Development Loop, a Product Engineering / Software Engineering split, and skills renamed to `mt-*`.
+
+### Breaking
+
+- **Renamed all skills** from `molten-<name>` to `mt-<name>` for brevity (`mt-validate`, `mt-brand`, `mt-design`, `mt-landing`, `mt-search`, `mt-skill-manage`). Re-install with the new names; `molten-docs/` output paths and `molten-*` metadata keys are unchanged.
 - **Renamed to Molten Loop.** The GitHub repo is `switch-dimension/molten-loop`. GitHub keeps a redirect from `switch-dimension/molten-os-core`. Skill ids stay `mt-*`, the suite id stays `molten-os`, and output stays in `molten-docs/`.
-- **One task source.** Task status now lives in one place. With a tracker and sync on, that is the tracker: **mt-build** moves issues and comments with commits, and the plan only links to issues. Without a tracker, it is the plan's checkboxes. **mt-plan**, **mt-guide**, **mt-verify**, **mt-review**, **mt-ship** and the retro follow the same rule (see `mt-plan/references/trackers.md` → Task source).
-- **mt-review** reviews with agents that did not write the code. Two fresh-context reviewers run in parallel: **Spec** (missing, wrong, or unasked-for behaviour against the acceptance criteria) and **Quality** (correctness, readability, architecture, security, performance, plus structural smells). The two get separate verdicts so one cannot hide the other. The main session then acts as lead: it checks each finding against callers and tests, merges duplicates, and records what it dropped in a **Dismissed** list. Before reviewing, it pins the diff to a resolved base, checks for a clean checkout, and states the intent. For risky changes it offers a second opinion from a different model (such as Codex or Gemini CLI, read-only) and reports when that is skipped. Reviewer prompts live in `mt-review/references/reviewer-briefs.md`. Draws on Matt Pocock's `code-review`, Lauren Tan's `interrogate`, and Addy Osmani's `code-review-and-quality`.
-- **Breaking: mt-mockup merged into mt-prototype.** One optional step between discovery and spec with two paths: a clickable UX mockup (the default; throwaway or scaffolded pages, with a choice of variations) in `references/mockup.md`, and a time-boxed technical prototype for one feasibility question in `references/prototype.md`. Output moves from `molten-docs/mockup/` to `molten-docs/prototype/<slug>.md`, with a `type: mockup | prototype` field. Remove `mt-mockup` if you installed it. **mt-discovery**, **mt-spec**, **mt-plan**, **mt-ship**, **mt-guide** and **mt-skill-manage** updated to match.
-- **README** splits the work into Product Engineering (validate, brand, design, landing) and Software Engineering (the whole Agent Development Loop, discovery through ship). Replaces "Factory Engineering" and removes the ASCII diagram.
+- **mt-mockup merged into mt-prototype.** One optional step between discovery and spec with two paths: a clickable UX mockup (the default; throwaway or scaffolded pages, with a choice of variations) in `references/mockup.md`, and a time-boxed technical prototype for one feasibility question in `references/prototype.md`. Output moves from `molten-docs/mockup/` to `molten-docs/prototype/<slug>.md`, with a `type: mockup | prototype` field. Remove `mt-mockup` if you installed it. **mt-discovery**, **mt-spec**, **mt-plan**, **mt-ship**, **mt-guide** and **mt-skill-manage** updated to match.
 
 ### Added
 
-- **Branches and worktrees** — **mt-build** always works on a feature branch (`feat/<slug>`, with the issue key when there is a tracker) and never on the default branch. A new optional "Running a wave in parallel" section covers one worktree and task branch per parallel task, merging back when green, and who ticks the plan with and without a tracker; it defers to worktrees the agent host already manages. **mt-ship** checks for a feature branch, confirms task branches are merged, and offers to clean up worktrees. **mt-plan** notes that parallel waves pair with worktrees. A database branch is separate: **mt-plan** marks it yes or no (schema or seed changes on a branchable database, or parallel writers that would collide), **mt-build** creates one only when the plan says yes, and **mt-ship** offers to delete it rather than deleting it with the PR.
-- **mt-ship** — seventh and final dev-loop step. Confirms review, verify and plan are done; tidies the branch (clean tree, no debug leftovers or throwaway code); re-runs build, tests, lint and type-check; scans branch history with gitleaks (installed via Homebrew, release binary, Go, Scoop/Chocolatey, or Docker) and audits changed dependencies; updates docs, `.env.example` and CHANGELOG; opens a PR with summary, evidence and a merge-danger call; watches CI; closes out the tracker. Never merges. Always ends with a short retrospective (`references/retro.md`) that draws on the session, logs and Molten docs, and applies improvements only with approval. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
-- **Issue tracker sync** — **mt-plan** detects GitHub Issues, Linear or Jira, confirms once, and records the tracker, status names and operations in `molten-docs/config.md` (sync on by default). On plan approval it creates a parent issue per feature and one issue per task with blocking links. **mt-build** claims and closes task issues with commit links; **mt-verify** and **mt-review** comment verdicts on the parent; **mt-guide** reads task status from the tracker. With no tracker, the plan file remains the task list. Shared details live in `mt-plan/references/trackers.md`.
-- **Parallel waves** — **mt-plan** groups tasks into waves that can run at the same time (no shared dependencies or files); **mt-build** picks the next ready task by wave and skips tasks already claimed.
-- **mt-guide** — "start here" utility skill that routes users to the right Molten skill. Reads `molten-docs/` front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`) to report where each feature is and what comes next; otherwise asks up to three questions. Includes shortcuts for tiny changes, bugs, PR reviews and existing specs, and only routes to installed skills. Inspired by Addy Osmani's `using-agent-skills` and Matt Pocock's `ask-matt`.
 - **Agent Development Loop** — new `dev-loop` skill category. Seven core steps run in order (`molten-order` 1–7):
   - **mt-discovery** — explore a feature before code; writes `molten-docs/discovery/<slug>.md`.
   - **mt-spec** — testable feature spec with acceptance criteria; writes `molten-docs/spec/<slug>.md`.
@@ -61,17 +58,31 @@ Per-skill versions in skill front matter (independent of repo tags):
   - **mt-verify** — proves every acceptance criterion with evidence; writes `molten-docs/verify/<slug>.md`.
   - **mt-review** — pre-merge review with severity-labelled findings; writes `molten-docs/review/<slug>.md`.
   - **mt-ship** — final gates, PR and retrospective; writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
-- **Optional dev-loop steps** between discovery and spec, marked with `molten-optional: "true"` and no `molten-order`:
-  - **mt-prototype** — throwaway prototype to answer one risky question; writes `molten-docs/prototype/<slug>.md`.
-  - **mt-mockup** — frontend-only, clickable mockup with mocked JSON and a fake API layer so the UX can be iterated on before real integrations. Asks whether to build a throwaway mockup in `molten-docs/mockup/<slug>/` or scaffold real pages in the project's frontend; decisions go to `molten-docs/mockup/<slug>.md`.
+- **mt-prototype** — optional step between discovery and spec: a clickable UX mockup with fake data (default) or a time-boxed technical prototype. Writes `molten-docs/prototype/<slug>.md`.
+- **mt-ship** — seventh and final dev-loop step. Confirms review, verify and plan are done; tidies the branch (clean tree, no debug leftovers or throwaway code); re-runs build, tests, lint and type-check; scans branch history with gitleaks (installed via Homebrew, release binary, Go, Scoop/Chocolatey, or Docker) and audits changed dependencies; updates docs, `.env.example` and CHANGELOG; opens a PR with summary, evidence and a merge-danger call; watches CI; closes out the tracker. Never merges. Always ends with a short retrospective (`references/retro.md`) that draws on the session, logs and Molten docs, and applies improvements only with approval. Writes `molten-docs/ship/<slug>.md` and `molten-docs/retro/<slug>.md`.
+- **mt-guide** — "start here" utility skill that routes users to the right Molten skill. Reads `molten-docs/` front matter (`status`, `verdict`, `recommendation`, `molten_next_skill`) to report where each feature is and what comes next; otherwise asks up to three questions. Includes shortcuts for tiny changes, bugs, PR reviews and existing specs, and only routes to installed skills. Inspired by Addy Osmani's `using-agent-skills` and Matt Pocock's `ask-matt`.
+- **Issue tracker sync** — **mt-plan** detects GitHub Issues, Linear or Jira, confirms once, and records the tracker, status names and operations in `molten-docs/config.md` (sync on by default). On plan approval it creates a parent issue per feature and one issue per task with blocking links. **mt-build** claims and closes task issues with commit links; **mt-verify** and **mt-review** comment verdicts on the parent; **mt-guide** reads task status from the tracker. With no tracker, the plan file remains the task list. Shared details live in `mt-plan/references/trackers.md`.
+- **Parallel waves** — **mt-plan** groups tasks into waves that can run at the same time (no shared dependencies or files); **mt-build** picks the next ready task by wave and skips tasks already claimed.
+- **Branches and worktrees** — **mt-build** always works on a feature branch (`feat/<slug>`, with the issue key when there is a tracker) and never on the default branch. A new optional "Running a wave in parallel" section covers one worktree and task branch per parallel task, merging back when green, and who ticks the plan with and without a tracker; it defers to worktrees the agent host already manages. **mt-ship** checks for a feature branch, confirms task branches are merged, and offers to clean up worktrees. **mt-plan** notes that parallel waves pair with worktrees. A database branch is separate: **mt-plan** marks it yes or no (schema or seed changes on a branchable database, or parallel writers that would collide), **mt-build** creates one only when the plan says yes, and **mt-ship** offers to delete it rather than deleting it with the PR.
+- **AGENTS.md setup.** **mt-guide** offers to add a short Molten Loop section to the project's `AGENTS.md`, under a `## Molten Loop skills` heading so later runs update it in place. It tells every agent session that the skills are installed, to follow the loop, and that the spec is the contract. For Claude Code it offers to add `@AGENTS.md` to `CLAUDE.md`. The section lives in `mt-guide/references/agents-md.md`, and the README install prompt asks for it.
+- **Preview deploy gate in mt-ship.** When the project deploys previews (Vercel, Cloudflare, Netlify and similar), mt-ship waits for the preview, reads the build log if it failed, and smoke-tests the preview URL. A failed deploy blocks the ship like failing CI. Details in `mt-ship/references/preview-deploy.md`.
+- **Skill lint.** `scripts/lint-skills.rb` checks every skill for valid front matter, a name matching its folder, required metadata, descriptions under 400 characters, broken links and reference files, unknown skill names, and a CHANGELOG version table that matches. Runs in GitHub Actions on every push and pull request.
 
 ### Changed
 
-- **Breaking:** renamed all skills from `molten-<name>` to `mt-<name>` for brevity (`mt-validate`, `mt-brand`, `mt-design`, `mt-landing`, `mt-search`, `mt-skill-manage`). Re-install with the new names; `molten-docs/` output paths and `molten-*` metadata keys are unchanged.
-- **README** rewritten to lead with the Agent Development Loop alongside the product skills, with a loop diagram, core vs optional steps, and how the two groups hand off through `molten-docs/`.
-- **mt-discovery** and **mt-spec** treat mt-prototype and mt-mockup as optional detours; mt-spec reads mockup learnings and the implied data contract.
+- **One task source.** Task status now lives in one place. With a tracker and sync on, that is the tracker: **mt-build** moves issues and comments with commits, and the plan only links to issues. Without a tracker, it is the plan's checkboxes. **mt-plan**, **mt-guide**, **mt-verify**, **mt-review**, **mt-ship** and the retro follow the same rule (see `mt-plan/references/trackers.md` → Task source).
+- **mt-review** reviews with agents that did not write the code. Two fresh-context reviewers run in parallel: **Spec** (missing, wrong, or unasked-for behaviour against the acceptance criteria) and **Quality** (correctness, readability, architecture, security, performance, plus structural smells). The two get separate verdicts so one cannot hide the other. The main session then acts as lead: it checks each finding against callers and tests, merges duplicates, and records what it dropped in a **Dismissed** list. Before reviewing, it pins the diff to a resolved base, checks for a clean checkout, and states the intent. For risky changes it offers a second opinion from a different model (such as Codex or Gemini CLI, read-only) and reports when that is skipped. Reviewer prompts live in `mt-review/references/reviewer-briefs.md`. Draws on Matt Pocock's `code-review`, Lauren Tan's `interrogate`, and Addy Osmani's `code-review-and-quality`.
+- **README** splits the work into Product Engineering (validate, brand, design, landing) and Software Engineering (the whole Agent Development Loop, discovery through ship).
+- **Shorter skill descriptions.** Every description is now about 300 characters (what it does, when to use it, and the one skill it's confused with), halving what agents load on every turn.
+- **mt-design and mt-brand split into reference files.** The `design.md` template, `example.html` preview and Pinterest phase move to `mt-design/references/`, and the `brand.md` template to `mt-brand/references/`. mt-design drops from 633 to about 255 lines and mt-brand from 402 to 180; the detail loads only when it's needed.
+- **mt-brand** reads the latest `molten-docs/validate/product-score-N.md` when it exists, so it doesn't re-ask what validation already answered.
 - **mt-skill-manage:** taxonomy documents core vs optional dev-loop skills.
 - **All skills:** ask questions as plain numbered text, with multiple-choice options as lettered sub-items (1a, 1b, 1c). Removed instructions to use agent-specific question tools (`AskUserQuestion`, `AskQuestion`, `request_user_input`).
+
+### Fixed
+
+- **mt-validate** pointed to a `references/molten-handoff.md` file that had been deleted. It's restored with the current skill names.
+- **mt-build** front matter is valid YAML again.
 
 ## [1.3.1] - 2026-08-25
 

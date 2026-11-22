@@ -116,7 +116,7 @@ All skills use the **`mt-<name>`** convention so they are easy to distinguish fr
 
 ## Changelog
 
-Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v1.3.1**.
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v2.0.0**.
 
 ## License
 
