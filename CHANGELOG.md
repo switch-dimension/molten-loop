@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v2.0.0`** (recommended) | Molten Loop: the Agent Development Loop, skills renamed to `mt-*`, mt-mockup merged into mt-prototype. |
+| **`v3.0.0`** (recommended) | Loop docs in one numbered folder per run: `molten-docs/loop/<slug>/`. mt-ship offers to create a changelog. |
+| **`v2.0.0`** | Molten Loop: the Agent Development Loop, skills renamed to `mt-*`, mt-mockup merged into mt-prototype. |
 | **`v1.3.1`** | README product/utility split and `molten-category` metadata. |
 | **`v1.3.0`** | Adds `molten-search` search router skill. |
 | **`v1.2.0`** | Adds `molten-validate`, surface-routed `molten-design`, README/changelog updates, and the full public skill pack. |
@@ -22,21 +23,39 @@ Per-skill versions in skill front matter (independent of repo tags):
 | --- | --- |
 | mt-brand | 1.3.0 |
 | mt-design | 1.9.0 |
-| mt-build | 0.4.0 |
-| mt-discovery | 0.3.0 |
-| mt-guide | 0.6.0 |
+| mt-build | 0.5.0 |
+| mt-discovery | 0.4.0 |
+| mt-guide | 0.7.0 |
 | mt-landing | 1.2.0 |
-| mt-plan | 0.4.0 |
-| mt-prototype | 0.4.0 |
-| mt-review | 0.5.0 |
-| mt-ship | 0.4.0 |
+| mt-plan | 0.5.0 |
+| mt-prototype | 0.5.0 |
+| mt-review | 0.6.0 |
+| mt-ship | 0.5.0 |
 | mt-search | 1.0.0 |
 | mt-skill-manage | 1.4.0 |
-| mt-spec | 0.3.0 |
+| mt-spec | 0.4.0 |
 | mt-validate | 1.2.1 |
-| mt-verify | 0.3.0 |
+| mt-verify | 0.4.0 |
 
 ## [Unreleased]
+
+## [3.0.0] - 2026-11-22
+
+One folder per run of the loop.
+
+### Breaking
+
+- **Loop docs move to `molten-docs/loop/<slug>/`, numbered in loop order.** Each run of the loop (a feature, fix or refactor) now keeps all its docs in one folder: `01-discovery.md`, `02-prototype.md`, `03-spec.md`, `04-plan.md`, `05-verify.md`, `06-review.md`, `07-ship.md` and `08-retro.md`. Steps keep their number when skipped. Throwaway prototype code moves to `molten-docs/loop/<slug>/prototype/`. Product docs (`validate/`, `brand/`, `design/`) and `config.md` stay where they were. **mt-guide** spots the old per-step folders and offers to move them with `git mv`, including front matter paths; until then it reads the old layout as if it were the new one.
+
+### Added
+
+- **mt-ship creates a changelog** when a project has none. It offers to start `CHANGELOG.md` in Keep a Changelog format with this change under `## [Unreleased]`, and records `changelog: none` in `molten-docs/config.md` if the user declines, so it asks only once. Changelog entries are written for users, under Added, Changed, Fixed or Removed.
+- **Lint rule** that fails if a skill uses the old per-step doc folders.
+
+### Changed
+
+- **README** shows the loop folder layout once instead of a full path in every row, and mt-ship's row mentions the preview deploy check.
+- **AGENTS.md section** points agents at `molten-docs/loop/<slug>/` and its spec and plan.
 
 ## [2.0.0] - 2026-11-21
 
