@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v3.0.0`** (recommended) | Loop docs in one numbered folder per run: `molten-docs/loop/<slug>/`. mt-ship offers to create a changelog. |
+| **`v3.1.0`** (recommended) | Auto mode: **mt-auto** runs the loop unattended up to an open PR, logging every decision in `auto.md`. |
+| **`v3.0.0`** | Loop docs in one numbered folder per run: `molten-docs/loop/<slug>/`. mt-ship offers to create a changelog. |
 | **`v2.0.0`** | Molten Loop: the Agent Development Loop, skills renamed to `mt-*`, mt-mockup merged into mt-prototype. |
 | **`v1.3.1`** | README product/utility split and `molten-category` metadata. |
 | **`v1.3.0`** | Adds `molten-search` search router skill. |
@@ -39,6 +40,10 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-verify | 0.5.0 |
 
 ## [Unreleased]
+
+## [3.1.0] - 2026-11-22
+
+Auto mode: hand a feature to the agent and come back to a pull request.
 
 ### Added
 
