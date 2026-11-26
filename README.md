@@ -27,7 +27,7 @@ Every skill writes its output as Markdown under `molten-docs/`, so each step bui
 | --- | --- | --- |
 | **Product Engineering** (once per product) | mt-validate → mt-brand → mt-design → mt-landing | A validated idea and a landing page to test it |
 | **Software Engineering** (once per feature) | mt-discovery → mt-spec → mt-plan → mt-build → mt-verify → mt-review → mt-ship, plus optional mt-prototype and mt-auto (auto mode) | A reviewed, secret-scanned pull request with evidence for every acceptance criterion |
-| **Utility skills** | mt-guide, mt-search, mt-skill-manage | Routing, research and skill management. Start with **mt-guide** if you're unsure which skill to use |
+| **Utility skills** | mt-guide, mt-ask, mt-search, mt-skill-manage | Routing, discussion, research and skill management. Start with **mt-guide** if you're unsure which skill to use |
 
 You don't need both. Testing an idea? Use Product Engineering on its own. Working in an existing codebase? Run Software Engineering once per feature.
 ## Product Engineering
@@ -106,6 +106,7 @@ Cross-cutting helpers. Install and use as needed.
 | Skill | What it does for you |
 | --- | --- |
 | **mt-guide** | The "start here" router. Reads `molten-docs/` to show where each feature is and what comes next, or asks a few questions and recommends the right skill, including shortcuts for small fixes, bugs and reviews. |
+| **mt-ask** | Discussion only. Talks a topic through briefly without touching files or starting implementation, until you say to build. Like Cursor's Ask mode, in any agent. |
 | **mt-search** | Routes search and research queries to the right backend: quick web lookup, recent social pulse, platform-specific fetch or cited web research. Handy during validation and discovery. |
 | **mt-skill-manage** | Manages skills via the skills.sh CLI (`npx skills`): install, update, remove, list and find skills. |
 

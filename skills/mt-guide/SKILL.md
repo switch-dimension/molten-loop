@@ -104,6 +104,7 @@ The spec is the handoff between the two disciplines. The product flow feeds the 
 
 ### Utility — any time
 
+- **mt-ask** — talk something through without building anything yet.
 - **mt-search** — route a search or research query (competitors, prior art, recent discussion).
 - **mt-skill-manage** — install, update, remove or find skills.
 - **mt-guide** — this skill.
@@ -168,6 +169,7 @@ Not every job needs the whole loop. Use these when they fit:
 | Hand a feature to the agent and come back to a PR | **mt-auto** (from a brief, or after **mt-discovery**) |
 | Existing landing page to improve | **mt-landing** (audit mode) |
 | Only need research | **mt-search** |
+| Just want to discuss, no code yet | **mt-ask** |
 
 ## Recommendation format
 

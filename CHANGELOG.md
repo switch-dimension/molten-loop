@@ -22,6 +22,7 @@ Per-skill versions in skill front matter (independent of repo tags):
 
 | Skill | Version in `SKILL.md` |
 | --- | --- |
+| mt-ask | 0.1.0 |
 | mt-auto | 0.1.0 |
 | mt-brand | 1.3.0 |
 | mt-design | 1.9.0 |
@@ -43,6 +44,7 @@ Per-skill versions in skill front matter (independent of repo tags):
 
 ### Added
 
+- **mt-ask.** A discussion-only skill: talks a topic through briefly without editing files or starting implementation, and only hands off to a build skill when you say so. Like Cursor's Ask mode, but it works in any agent.
 - **Update notices in mt-guide.** Once per session, mt-guide checks the latest Molten Loop version on GitHub. If a newer release is out, or some of your skills are behind the others, it says so in one line and offers to update. It warns you before a major update with breaking changes, does nothing when offline, and never updates without asking.
 - **Claude Code plugin.** Molten Loop is now also a Claude Code plugin with its own marketplace: `/plugin install molten-loop --marketplace switch-dimension/molten-loop`. Plugin installs can update through Claude Code.
 - **One suite version.** Every skill carries `molten-version`, matching the new `VERSION` file and the plugin manifest. The lint fails if they disagree.
