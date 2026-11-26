@@ -160,7 +160,7 @@ For a Claude Code plugin install, run `claude plugin update molten-loop@molten-l
 
 ## Changelog
 
-Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v3.1.0**.
+Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v3.2.0**.
 
 ## License
 

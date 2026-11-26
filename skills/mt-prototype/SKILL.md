@@ -4,7 +4,7 @@ description: "Molten Loop — optional step before the spec. Builds a clickable 
 metadata:
   author: switch-dimension
   version: "0.6.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core

@@ -4,7 +4,7 @@ description: "Molten Loop — discussion only. Talks a topic through briefly wit
 metadata:
   author: switch-dimension
   version: "0.1.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core

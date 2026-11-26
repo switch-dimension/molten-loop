@@ -4,7 +4,7 @@ description: "Molten Loop — manages agent skills with the skills.sh CLI (`npx 
 metadata:
   author: switch-dimension
   version: "1.5.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core

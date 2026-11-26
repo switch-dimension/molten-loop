@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Tag | When to use |
 | --- | --- |
-| **`v3.1.0`** (recommended) | Auto mode: **mt-auto** runs the loop unattended up to an open PR, logging every decision in `auto.md`. |
+| **`v3.2.0`** (recommended) | **mt-ask** for discussion without implementation, update notices in mt-guide, and a Claude Code plugin. |
+| **`v3.1.0`** | Auto mode: **mt-auto** runs the loop unattended up to an open PR, logging every decision in `auto.md`. |
 | **`v3.0.0`** | Loop docs in one numbered folder per run: `molten-docs/loop/<slug>/`. mt-ship offers to create a changelog. |
 | **`v2.0.0`** | Molten Loop: the Agent Development Loop, skills renamed to `mt-*`, mt-mockup merged into mt-prototype. |
 | **`v1.3.1`** | README product/utility split and `molten-category` metadata. |
@@ -41,6 +42,10 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-verify | 0.5.0 |
 
 ## [Unreleased]
+
+## [3.2.0] - 2026-11-26
+
+Talk things through with mt-ask, get told when a new release is out, and install as a Claude Code plugin.
 
 ### Added
 

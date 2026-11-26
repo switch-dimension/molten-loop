@@ -4,7 +4,7 @@ description: "Molten Loop — the \"start here\" router. Reads `molten-docs/` to
 metadata:
   author: switch-dimension
   version: "0.9.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core

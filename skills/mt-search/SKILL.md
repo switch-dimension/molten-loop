@@ -4,7 +4,7 @@ description: "Molten Loop — routes search and research to the right backend: w
 metadata:
   author: switch-dimension
   version: "1.0.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core

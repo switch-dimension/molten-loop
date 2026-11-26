@@ -4,7 +4,7 @@ description: "Molten Loop — builds or audits a high-converting landing page (i
 metadata:
   author: switch-dimension
   version: "1.2.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: product
   molten-tier: core

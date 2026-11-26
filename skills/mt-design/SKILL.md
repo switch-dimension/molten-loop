@@ -4,7 +4,7 @@ description: "Molten Loop — turns the brand into a DESIGN.md visual system for
 metadata:
   author: switch-dimension
   version: "1.9.0"
-  molten-version: "3.1.0"
+  molten-version: "3.2.0"
   molten-suite: molten-os
   molten-category: product
   molten-tier: core
