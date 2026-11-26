@@ -4,16 +4,33 @@
 #   ruby scripts/lint-skills.rb
 
 require "yaml"
+require "json"
 require "pathname"
 
 ROOT = Pathname.new(__dir__).parent
 SKILLS_DIR = ROOT / "skills"
 MAX_DESCRIPTION = 400
 CATEGORIES = %w[product dev-loop utility].freeze
-REQUIRED_METADATA = %w[author version molten-suite molten-category molten-tier].freeze
+REQUIRED_METADATA = %w[author version molten-version molten-suite molten-category molten-tier].freeze
+SUITE_VERSION_FILE = ROOT / "VERSION"
+PLUGIN_MANIFEST = ROOT / ".claude-plugin" / "plugin.json"
 
 errors = []
 error = ->(path, msg) { errors << "#{path.relative_path_from(ROOT)}: #{msg}" }
+
+# One suite version, shared by VERSION, the Claude Code plugin and every skill.
+# mt-guide compares the installed molten-version with VERSION on main to offer updates.
+suite_version = SUITE_VERSION_FILE.exist? ? SUITE_VERSION_FILE.read.strip : nil
+unless suite_version&.match?(/\A\d+\.\d+\.\d+\z/)
+  error.(SUITE_VERSION_FILE, "must exist and hold a semver like 3.1.0")
+  suite_version = nil
+end
+if PLUGIN_MANIFEST.exist?
+  plugin_version = JSON.parse(PLUGIN_MANIFEST.read)["version"] rescue nil
+  error.(PLUGIN_MANIFEST, "version '#{plugin_version}' must match VERSION (#{suite_version})") if suite_version && plugin_version != suite_version
+else
+  error.(PLUGIN_MANIFEST, "is missing")
+end
 
 skill_dirs = SKILLS_DIR.children.select(&:directory?).sort
 skill_names = skill_dirs.map { |d| d.basename.to_s }
@@ -60,6 +77,7 @@ skill_dirs.each do |dir|
     missing = REQUIRED_METADATA.reject { |k| md[k].to_s.strip != "" }
     error.(file, "metadata is missing: #{missing.join(', ')}") unless missing.empty?
     error.(file, "metadata.version '#{md['version']}' must be a quoted semver string like \"1.2.0\"") unless md["version"].is_a?(String) && md["version"].match?(/\A\d+\.\d+\.\d+\z/)
+    error.(file, "metadata.molten-version '#{md['molten-version']}' must match VERSION (#{suite_version})") if suite_version && md["molten-version"] != suite_version
     error.(file, "metadata.molten-category must be one of #{CATEGORIES.join(', ')}") if md["molten-category"] && !CATEGORIES.include?(md["molten-category"])
     versions[name] = md["version"]
   else

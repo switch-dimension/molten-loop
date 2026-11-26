@@ -4,6 +4,7 @@ description: "Molten Loop — interviews you on audience, pain, positioning, mes
 metadata:
   author: switch-dimension
   version: "1.3.0"
+  molten-version: "3.1.0"
   molten-suite: molten-os
   molten-category: product
   molten-tier: core

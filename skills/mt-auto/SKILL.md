@@ -4,6 +4,7 @@ description: "Molten Loop — auto mode. Runs the rest of the Agent Development 
 metadata:
   author: switch-dimension
   version: "0.1.0"
+  molten-version: "3.1.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core

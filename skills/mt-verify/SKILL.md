@@ -4,6 +4,7 @@ description: "Molten Loop — Agent Development Loop step 5. Proves every spec a
 metadata:
   author: switch-dimension
   version: "0.5.0"
+  molten-version: "3.1.0"
   molten-suite: molten-os
   molten-category: dev-loop
   molten-tier: core

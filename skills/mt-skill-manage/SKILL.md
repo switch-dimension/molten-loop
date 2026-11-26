@@ -3,7 +3,8 @@ name: mt-skill-manage
 description: "Molten Loop — manages agent skills with the skills.sh CLI (`npx skills`): install, update, remove, list, find, restore from a lockfile or scaffold a skill. Use when the user mentions skills.sh, `npx skills`, or adding or removing skills."
 metadata:
   author: switch-dimension
-  version: "1.4.0"
+  version: "1.5.0"
+  molten-version: "3.1.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -53,6 +54,15 @@ npx skills update                 # update all
 npx skills update mt-landing  # update one
 npx skills update -p              # project skills only
 npx skills update -g              # global skills only
+```
+
+To see whether a Molten Loop update exists, compare `molten-version` in any installed `mt-*` skill with `curl -fsSL https://raw.githubusercontent.com/switch-dimension/molten-loop/main/VERSION`. Point the user to the changelog before a major update: https://github.com/switch-dimension/molten-loop/blob/main/CHANGELOG.md
+
+If Molten Loop was installed as a Claude Code plugin rather than with skills.sh, update it through Claude Code instead, then restart Claude Code:
+
+```bash
+claude plugin marketplace update molten-loop
+claude plugin update molten-loop@molten-loop
 ```
 
 **Remove skills:**
@@ -126,3 +136,7 @@ When scaffolding a new skill:
 - Utility skill → `molten-category: utility`, no `molten-order`
 
 Keep all skills in flat `skills/mt-<name>/` paths so `npx skills add` discovers them correctly.
+
+## Suite version
+
+Every skill's `molten-version` matches `VERSION` at the repo root and `version` in `.claude-plugin/plugin.json`. mt-guide compares the installed `molten-version` with `VERSION` on `main` to offer updates, and Claude Code only updates the plugin when its version changes. On a release, bump all three together; `ruby scripts/lint-skills.rb` fails if they disagree. A new skill starts with the current `VERSION`.

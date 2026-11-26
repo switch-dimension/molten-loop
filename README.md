@@ -139,6 +139,24 @@ npx skills add switch-dimension/molten-loop --skill mt-landing
 
 All skills use the **`mt-<name>`** convention so they are easy to distinguish from third-party skills in `npx skills ls`.
 
+### Claude Code plugin
+
+In Claude Code you can install Molten Loop as a plugin instead:
+
+```
+/plugin install molten-loop --marketplace switch-dimension/molten-loop
+```
+
+### Updating
+
+**mt-guide** checks for a new Molten Loop release once per session and offers to update you. To update yourself:
+
+```bash
+npx skills update            # skills.sh installs (add -g for global installs)
+```
+
+For a Claude Code plugin install, run `claude plugin update molten-loop@molten-loop` and restart Claude Code, or turn on auto-update for the marketplace in `/plugin`. Read the [changelog](CHANGELOG.md) before a major version: it lists breaking changes.
+
 ## Changelog
 
 Release history and version notes: [CHANGELOG.md](CHANGELOG.md). Current release: **v3.1.0**.

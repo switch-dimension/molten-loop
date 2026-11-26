@@ -1,0 +1,17 @@
+{
+  "name": "molten-loop",
+  "owner": {
+    "name": "Switch Dimension",
+    "url": "https://github.com/switch-dimension"
+  },
+  "metadata": {
+    "description": "Molten Loop skills by Switch Dimension."
+  },
+  "plugins": [
+    {
+      "name": "molten-loop",
+      "source": "./",
+      "description": "Molten Loop: product and software engineering skills for coding agents, from idea validation to a reviewed pull request."
+    }
+  ]
+}

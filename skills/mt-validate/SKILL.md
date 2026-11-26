@@ -4,6 +4,7 @@ description: "Molten Loop — adversarially scores a product or business idea ag
 metadata:
   author: switch-dimension
   version: "1.2.1"
+  molten-version: "3.1.0"
   molten-suite: molten-os
   molten-category: product
   molten-tier: pro

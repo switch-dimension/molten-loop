@@ -27,19 +27,29 @@ Per-skill versions in skill front matter (independent of repo tags):
 | mt-design | 1.9.0 |
 | mt-build | 0.6.0 |
 | mt-discovery | 0.5.0 |
-| mt-guide | 0.8.0 |
+| mt-guide | 0.9.0 |
 | mt-landing | 1.2.0 |
 | mt-plan | 0.6.0 |
 | mt-prototype | 0.6.0 |
 | mt-review | 0.7.0 |
 | mt-ship | 0.6.0 |
 | mt-search | 1.0.0 |
-| mt-skill-manage | 1.4.0 |
+| mt-skill-manage | 1.5.0 |
 | mt-spec | 0.5.0 |
 | mt-validate | 1.2.1 |
 | mt-verify | 0.5.0 |
 
 ## [Unreleased]
+
+### Added
+
+- **Update notices in mt-guide.** Once per session, mt-guide checks the latest Molten Loop version on GitHub. If a newer release is out, or some of your skills are behind the others, it says so in one line and offers to update. It warns you before a major update with breaking changes, does nothing when offline, and never updates without asking.
+- **Claude Code plugin.** Molten Loop is now also a Claude Code plugin with its own marketplace: `/plugin install molten-loop --marketplace switch-dimension/molten-loop`. Plugin installs can update through Claude Code.
+- **One suite version.** Every skill carries `molten-version`, matching the new `VERSION` file and the plugin manifest. The lint fails if they disagree.
+
+### Changed
+
+- **mt-skill-manage** explains how to check for a Molten Loop update and how to update a Claude Code plugin install.
 
 ## [3.1.0] - 2026-11-22
 

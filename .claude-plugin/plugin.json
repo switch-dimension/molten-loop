@@ -1,0 +1,13 @@
+{
+  "name": "molten-loop",
+  "version": "3.1.0",
+  "description": "Molten Loop: product and software engineering skills for coding agents, from idea validation to a reviewed pull request.",
+  "author": {
+    "name": "Switch Dimension",
+    "url": "https://github.com/switch-dimension"
+  },
+  "homepage": "https://github.com/switch-dimension/molten-loop",
+  "repository": "https://github.com/switch-dimension/molten-loop",
+  "license": "MIT",
+  "keywords": ["skills", "workflow", "spec", "planning", "code-review"]
+}

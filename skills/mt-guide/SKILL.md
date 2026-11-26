@@ -3,7 +3,8 @@ name: mt-guide
 description: "Molten Loop — the \"start here\" router. Reads `molten-docs/` to show where each feature is and recommends the next skill, and can add a Molten Loop section to `AGENTS.md`. Use for \"what's next\", \"where do I start\", which skill to use, or setting up Molten Loop."
 metadata:
   author: switch-dimension
-  version: "0.8.0"
+  version: "0.9.0"
+  molten-version: "3.1.0"
   molten-suite: molten-os
   molten-category: utility
   molten-tier: core
@@ -44,6 +45,23 @@ Router only. Work out where the user is, recommend **one** next skill, say why, 
 4. **Route** using the Skill map and Shortcuts.
 5. **Hand off.** Use the Recommendation format, then offer to start the recommended skill.
 6. **Check AGENTS.md.** If `AGENTS.md` at the repository root has no `## Molten Loop skills` heading, add one line after the recommendation: "Want me to add a short Molten Loop section to `AGENTS.md` so every agent session knows these skills are here?" Ask once per session, and not if the user declined before.
+7. **Check for updates.** Follow Update check, once per session. It adds at most one line and never delays the recommendation.
+
+## Update check
+
+Molten Loop releases share one suite version: `molten-version` in every skill's front matter, and `VERSION` at the root of the repo.
+
+1. **Installed version.** Read `molten-version` from this skill's front matter. Also read it from the other installed `mt-*` skills. A skill without the field predates v3.1.0.
+2. **Latest version.** Run `curl -fsSL --max-time 5 https://raw.githubusercontent.com/switch-dimension/molten-loop/main/VERSION`. If it fails for any reason (offline, no network access, no curl), skip the check silently and don't retry.
+3. **Compare** as semver. Say nothing when everything is current.
+4. **Tell the user**, in one line after the recommendation:
+   - Newer release: "Molten Loop v<latest> is out (you have v<installed>). What changed: https://github.com/switch-dimension/molten-loop/blob/main/CHANGELOG.md. Want me to update?" If the major version changed, add "It has breaking changes, so read the changelog's Breaking section first."
+   - Mixed versions: "Some Molten skills are on older versions (<names>). Want me to update them?"
+5. **Update only after the user agrees**, with the command for how the skills were installed:
+   - Installed with skills.sh (the default): `npx skills update`. Add `-g` if the skills are in a global agent folder such as `~/.cursor/skills/`. Then run `npx skills ls` to confirm.
+   - Installed as a Claude Code plugin (the skill runs as `molten-loop:mt-guide`, or lives under `~/.claude/plugins/`): `claude plugin marketplace update molten-loop`, then `claude plugin update molten-loop@molten-loop`, and tell the user to restart Claude Code.
+
+After a major update, re-read `molten-docs/` with the new rules. For example, the Older layout section below offers to move pre-v3 folders.
 
 ## AGENTS.md setup
 
@@ -168,4 +186,6 @@ Then ask: "Want me to start **<skill>** now?"
 - [ ] Read `molten-docs/` before asking anything
 - [ ] Read the recommended skill's `SKILL.md` before describing it or suggesting a step be skipped
 - [ ] Checked the recommended skill is installed (or gave the install command)
-- [ ] One clear next skill, in the recommendation format- [ ] No files written, except the `AGENTS.md` section after the user agreed
+- [ ] One clear next skill, in the recommendation format
+- [ ] Update check run once this session; an update offered only if one exists, and run only if the user agreed
+- [ ] No files written, except the `AGENTS.md` section after the user agreed
